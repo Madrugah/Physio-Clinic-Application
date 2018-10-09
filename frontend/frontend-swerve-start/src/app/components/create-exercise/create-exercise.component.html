@@ -1,0 +1,93 @@
+<!-- Exercises Management -->
+ 
+<div class="row col-xs-offset-2 col-xs-8" *ngIf="adminStatus || physStatus">
+  <div id="create-exercise-div"><!-- class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">-->
+    <form id="create-exercise" (ngSubmit)="onSubmit(f)" #f="ngForm">
+      {{response}}
+      <div class="form-group">
+        <label for="name">Exercise Name</label>
+        <input type="text" id="name" name="name" ngModel class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <input type="text" id="description" name="description" ngModel class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="objectives">Objectives</label>
+        <input type="text" id="objectives" name="objectives" ngModel class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="authorName">Author Name</label>
+        <input type="text" id="authorName" name="authorName" ngModel class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="actionSteps">Action Steps</label>
+        <input type="text" id="actionSteps" name="actionSteps" ngModel class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="location">Location</label>
+        <input type="text" id="location" name="location" ngModel class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="frequency">Frequency</label>
+        <input type="number" min="1" id="frequency" name="frequency" ngModel class="form-control">
+      </div>
+      <div class="form-group">
+          <label for="duration">Duration</label>
+          <input type="number" min="1" id="duration" name="duration" ngModel class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="targetDate">Target Date</label>
+        <input type="date" id="targetDate" name="targetDate" ngModel class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="multimediaURL">Image URL Link(s)</label>
+        <input type="url" id="multimediaURL" name="multimediaURL" ngModel class="form-control">
+      </div>
+      
+    <div class="center">
+    <file-drop headertext="Drop files here" (onFileDrop)="dropped($event)" 
+    (onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)">
+        
+    </file-drop>
+    <input id="inputFileToLoad" type="file" onchange="encodeImageFileAsURL();" />
+    <div id="imgTest"></div>
+    <div class="upload-table">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            <tbody class="upload-name-style">
+                <tr *ngFor="let item of files; let i=index">
+                    <td><strong>{{ item.relativePath }}</strong></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+    
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script> 
+      <button class="btn btn-primary" type="submit">Create Exercise</button>
+    </form>
+  </div>
+</div>
+
+
+
+
+    
+
+
+ 
+<!-- name: String,
+    description: String,
+    objectives: String,
+    authorName: String,
+    actionSteps: String,
+    location: String,
+    frequency: Number,
+    duration: Number,
+    targetDate: Date,
+    multimediaURL: String -->

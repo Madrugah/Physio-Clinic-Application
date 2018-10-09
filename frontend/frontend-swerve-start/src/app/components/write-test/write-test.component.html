@@ -1,0 +1,56 @@
+<h1>{{assessmentform.name}}</h1>
+<h3>Description: {{assessmentform.description }}</h3>
+
+
+<mat-card>
+    <mat-card-content>
+        <div *ngFor="let qchosen of selectedQuestions" class="col-sm-6 col-md-12">
+            <mat-card-title>Name: {{qchosen.name}}</mat-card-title>
+            <br>
+            <mat-card-subtitle>Description: {{qchosen.questionText}}</mat-card-subtitle>
+            <br>
+            <mat-form-field style="width:100%;">
+                <textarea matInput placeholder="Answer" style="min-height:100px" [(ngModel)]="qchosen.answer"></textarea>
+            </mat-form-field>
+            <textarea matInput></textarea>
+            <mat-divider></mat-divider>
+            <br/>
+            <br/>
+        </div>
+    </mat-card-content>
+
+
+    <mat-card-content>
+
+        <div class="col-sm-6 col-md-12">
+            <mat-card-title>Rate your physical wellness</mat-card-title>
+            <mat-card-subtitle>How do you feel now, after the test, as compared to before the test?</mat-card-subtitle>
+            <mat-radio-group [(ngModel)]="rating">
+                <mat-radio-button value="1">
+                    <p>1 - Much worse now</p>
+                </mat-radio-button>
+                <br/>
+                <mat-radio-button value="2">
+                    <p>2 - Somewhat worse now</p>
+                </mat-radio-button>
+                <br/>
+                <mat-radio-button value="3">
+                    <p>3 - The same</p>
+                </mat-radio-button>
+                <br/>
+                <mat-radio-button value="4">
+                    <p>4 - Somewhat better now</p>
+                </mat-radio-button>
+                <br/>
+                <mat-radio-button value="5">
+                    <p>5 - Completely relieved</p>
+                </mat-radio-button>
+            </mat-radio-group>
+        </div>
+    </mat-card-content>
+
+    <br/>
+
+    <button mat-raised-button (click)="SubmitTest()">Submit Test</button>
+
+</mat-card>

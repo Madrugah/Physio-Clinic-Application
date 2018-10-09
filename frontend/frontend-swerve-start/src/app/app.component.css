@@ -1,0 +1,79 @@
+html{
+  color: #22244d;
+}
+body{
+  color: #22244d;
+}
+a {
+  color: #016cae;
+}
+
+#homeIconDiv{
+  padding-right: 10px;
+}
+
+#homeLogo{
+    width:75px; /* you can use % */
+    height: auto;
+    background-color: #fdfaf3;
+    border-radius: 6px;
+}
+
+mat-toolbar{
+  background-color: #016cae; 
+  color: #fdfaf3;
+}
+
+#footer-logo {
+  height: 75%;
+  width: 75%;
+}
+
+#email {
+    padding-right: 35px;
+    margin-top: 10px;
+    font-size: small;
+}
+#a-email{
+  color: white;
+}
+#footer{
+  float: right;
+  padding: 20px;
+}
+
+.fill-space{
+  flex: 1 1 auto;
+}
+
+.off-white{
+  background-color: #fdfaf3;
+  color: #22244d;
+}
+
+.alert{
+  color: #fbad33;
+}
+
+.i{
+  font-style: italic;
+}
+
+.inv{
+  background-color: #006d8c;
+  color: #fdfaf3;
+}
+
+
+/* Colour palette
+---------------------
+ off white:   #fdfaf3
+ black:       #211009
+ cobalt:      #324c7f
+ bright blue: #016cae
+ turquoise:   #006d8c
+ yellow:      #fecf06
+ navy blue:   #22244d
+ orange:      #fbad33
+---------------------
+*/

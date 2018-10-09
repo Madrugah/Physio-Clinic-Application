@@ -1,0 +1,32 @@
+<div class="demo-tab-content">
+  <div class="text-center" style="margin: 20px;">
+    <mat-card-title style="color: #016cae">Test Results</mat-card-title>
+  </div>
+  <div *ngFor="let res of finishedResults">
+    <mat-expansion-panel [expanded]="(false||showResults)">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{res.name}}
+        </mat-panel-title>
+        <mat-panel-description>
+          {{res.description}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div *ngFor="let pair of res.results">
+        <mat-card>
+          <h5>Question name:</h5>
+          <p>{{pair.name}}</p>
+
+          <h5>Question description:</h5>
+          <p>{{pair.helpDescription}}</p>
+
+          <h5>Question answer:</h5>
+          <p>{{pair.answer}}</p>
+
+          <h5>Question Text:</h5>
+          <p>{{pair.questionText}}</p>
+        </mat-card>
+      </div>
+    </mat-expansion-panel>
+  </div>
+</div>

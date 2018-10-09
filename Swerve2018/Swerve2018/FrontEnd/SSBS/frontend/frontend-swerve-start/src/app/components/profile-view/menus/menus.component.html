@@ -1,0 +1,88 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="text-center" style="margin: 10px;">
+      <mat-card-title style="color: #016cae">Menus</mat-card-title>
+    </div>
+    <div *ngIf="!showMenus">
+      <div *ngIf="isAllowed">
+        <mat-card class="col-xs-offset-1 col-xs-10" style="margin-top:20px;margin-bottom:20px">
+          <mat-card-title style="color: #016cae">Select a Menu Plan to Add</mat-card-title>
+          <mat-divider></mat-divider>
+          <mat-card-actions>
+            <!--<mat-card-title style="color:blue"></h2>-->
+            <mat-select placeholder="Select Plan" style="width: 25%;" [(value)]="selectedPlan" required>
+              <mat-option *ngFor="let plan of availablePlans" value="{{plan._id}}">
+                {{plan.name}}
+              </mat-option>
+            </mat-select>
+            <button mat-raised-button (click)="assignPlan(selectedPlan)">Assign To User</button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <mat-card style="margin-bottom:10px">
+      <!--took out bootstrap class for above mat-card tag was class="col-sm-offset-2 col-sm-8"-->
+
+      <div *ngFor="let plan of myShownPlans; let i = index;">
+        <mat-expansion-panel [expanded]="showMenus">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{plan.name}}
+            </mat-panel-title>
+            <mat-panel-description>
+              {{plan.description}}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <mat-card-content>Complete the Following <span style="color: #fbad33;">Exercises</span>:</mat-card-content>
+          <div *ngFor="let exercise of plan.exercises">
+            <div style="height: 15px;"></div>
+            <mat-card>
+              <mat-card-subtitle>
+                {{exercise.name}}
+              </mat-card-subtitle>
+              <hr>
+              <p>Description: {{exercise.description}}</p>
+              <p>Objectives: {{exercise.objectives}}</p>
+              <p>Location: {{exercise.location}}</p>
+              <p>Frequency: {{exercise.frequency}}</p>
+              <p>Duration: {{exercise.duration}}</p>
+              <p>Target Date: {{exercise.targetDate}}</p>
+              <ol>
+                <li *ngFor="let step of exercise.actionSteps">
+                  {{step}}
+                </li>
+              </ol>
+              <mat-grid-list cols="2" rowHeight="2:1">
+                <mat-grid-tile *ngFor="let image of exercise.multimediaURL">
+                  <img src={{image}} style="max-height:100%; max-width:100%;">
+                </mat-grid-tile>
+              </mat-grid-list>
+            </mat-card>
+          </div>
+
+          <br/>
+          <mat-card-content>Complete the Following <span style="color: #fbad33;">Tests</span>:</mat-card-content>
+
+          <mat-card *ngFor="let test of plan.tests" style="margin:10px">
+            <mat-card-title>
+              {{test.name}}
+            </mat-card-title>
+            <mat-card-subtitle>
+              {{test.description}}
+            </mat-card-subtitle>
+            <mat-action-row>
+              <button mat-raised-button (click)="takeTest(test)">Complete Test</button>
+            </mat-action-row>
+          </mat-card>
+          <div *ngIf="isAllowed">
+            <mat-action-row>
+              <button mat-raised-button (click)="removeMenu(plan, i)">Remove </button>
+            </mat-action-row>
+          </div>
+        </mat-expansion-panel>
+      </div>
+    </mat-card>
+  </div>
+</div>

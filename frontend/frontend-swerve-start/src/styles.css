@@ -1,0 +1,15 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "../node_modules/devextreme/dist/css/dx.common.css";
+@import "../node_modules/devextreme/dist/css/dx.light.css";
+@media screen and (max-width: 770px) {
+    .pre-collapse{
+        display: none;
+    }
+ }
+@media screen and (min-width: 770px) {
+    .post-collapse{
+        display: none;
+    }
+ }

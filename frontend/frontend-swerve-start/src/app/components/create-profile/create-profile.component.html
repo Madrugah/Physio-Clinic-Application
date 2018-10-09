@@ -1,0 +1,136 @@
+<div class="container-fluid">
+  <div *ngIf="isReset;then content else other_content"></div>
+  <ng-template #content>
+    <div class="row" style="padding-top:20px; margin-bottom:20px">
+      <mat-card class="col-sm-offset-2 col-sm-8">
+        <div class="text-center col-xs-12">
+          <h1>Change Password</h1>
+        </div>
+        <form (ngSubmit)="changePass()">
+          <mat-form-field style="margin-right:5px">
+            <mat-label for="oldPass">Old Password</mat-label>
+            <input matInput type="password" id="oldPass" placeholder="Enter old Password" [(ngModel)]="oldPass" name="oldPass" required>
+          </mat-form-field>
+          <mat-form-field style="margin-right:5px">
+            <mat-label for="Pass">Change Password</mat-label>
+            <input matInput type="password" id="Pass" placeholder="Enter new Password" [(ngModel)]="newPass" name="newPass" required>
+          </mat-form-field>
+          <mat-form-field style="margin-right:5px">
+            <mat-label for="confirm">Confirm Password</mat-label>
+            <input matInput type="password" id="confirm" placeholder="Re-Enter new Password" [(ngModel)]="confirmPass" name="confirm" required>
+          </mat-form-field>
+          <mat-card-actions class="text-right" style="margin-right:20px">
+            <button type="submit" id="submit-Pass" mat-raised-button>Submit</button>
+            <a routerLink="/patient-profile"><button type="button" id="cancel-Pass" mat-raised-button>Cancel</button></a>
+          </mat-card-actions>
+        </form>
+      </mat-card>
+    </div>
+    </ng-template>
+    <ng-template #other_content>
+      <div class="row" style="padding-top:20px; margin-bottom:20px">
+        <mat-card class="col-sm-offset-2 col-sm-8">
+          <div class="text-center col-xs-12">
+            <h1>Edit profile</h1>
+          </div>
+          <form (ngSubmit)="onButtonPress(f)" #f="ngForm" novalidate>
+            <mat-form-field style="margin-right:5px">
+              <mat-label for="givenName">Given name</mat-label>
+              <input matInput type="text" id="givenName" placeholder="Enter given name" [(ngModel)]="givenName" name="givenName" required>
+            </mat-form-field>
+            <mat-form-field style="margin-right:5px">
+              <mat-label for="familyName">Family name</mat-label>
+              <input matInput type="text" id="familyName" placeholder="enter family name" [(ngModel)]="familyName" name="familyName" required>
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput [max]="maxDate" [matDatepicker]="picker" [(ngModel)]="DOB" (dateChange)="getAge(f)" name="DOB" placeholder="Date of Birth" required>
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <!--<mat-form-field style="margin-right:5px">-->
+            <!--  <mat-label for="DOB">Date of Birth</mat-label>-->
+            <!--  <input matInput type="date" id="DOB" [(ngModel)]="DOB" (change)="getAge(f)" name="DOB" required>-->
+            <!--</mat-form-field>-->
+            <mat-form-field style="margin-right:5px">
+              <mat-label for="age">Age: </mat-label>
+              <input matInput type="number" id="age" [(ngModel)]="age" name="age" disabled>
+            </mat-form-field>
+            <mat-form-field style="margin-right:5px">
+              <mat-label for="postalCode">Postal Code</mat-label>
+              <input matInput type="text" id="postalCode" placeholder="Enter postal code" [(ngModel)]="postalCode" name="postalCode" required>
+            </mat-form-field>
+            <mat-form-field style="margin-right:5px">
+              <mat-label for="phone">Phone Number</mat-label>
+              <input matInput type="text" id="phone" placeholder="Enter phone number" [(ngModel)]="phone" name="phone" required>
+            </mat-form-field>
+            <mat-form-field style="margin-right:5px">
+              <mat-label for="country">Country</mat-label>
+              <input matInput type="text" id="country" placeholder="enter country" [(ngModel)]="country" name="country" required>
+            </mat-form-field>
+            <mat-form-field style="margin-right:5px">
+              <mat-label for="province">Province</mat-label>
+              <input matInput type="text" id="province" placeholder="enter province" [(ngModel)]="province" name="province" required>
+            </mat-form-field>
+            <mat-form-field style="margin-right:5px">
+              <mat-label for="city">City</mat-label>
+              <input matInput type="text" id="city" placeholder="Enter City" [(ngModel)]="city" name="city" required>
+            </mat-form-field>
+            <mat-card-actions class="text-right" style="margin-right:20px">
+              <button type="submit" id="submit-profile" mat-raised-button>Submit</button>
+              <a routerLink="/patient-profile"><button type="button" id="cancel-create" mat-raised-button>Cancel</button></a>
+            </mat-card-actions>
+          </form>
+        </mat-card>
+      </div>
+      <div *ngIf="adminStatus">
+        <div class="row" style="padding-top:20px; margin-bottom:20px">
+          <mat-card class="col-sm-offset-2 col-sm-8">
+            <div class="text-center col-xs-12">
+              <h1>Change Password</h1>
+            </div>
+            <form (ngSubmit)="changePassAdmin()">
+              <mat-form-field style="margin-right:5px">
+                <mat-label for="Pass">Change Password</mat-label>
+                <input matInput type="password" id="Pass" placeholder="Enter new Password" [(ngModel)]="newPass" name="newPass" required>
+              </mat-form-field>
+              <mat-form-field style="margin-right:5px">
+                <mat-label for="confirm">Confirm Password</mat-label>
+                <input matInput type="password" id="confirm" placeholder="Re-Enter new Password" [(ngModel)]="confirmPass" name="confirm" required>
+              </mat-form-field>
+              <mat-card-actions class="text-right" style="margin-right:20px">
+                <button type="submit" id="submit-Pass" mat-raised-button>Submit</button>
+                <a routerLink="/patient-profile"><button type="button" id="cancel-Pass" mat-raised-button>Cancel</button></a>
+              </mat-card-actions>
+            </form>
+          </mat-card>
+        </div>
+      </div>
+      <div *ngIf="userStatus">
+        <div class="row" style="padding-top:20px; margin-bottom:20px">
+          <mat-card class="col-sm-offset-2 col-sm-8">
+            <div class="text-center col-xs-12">
+              <h1>Change Password</h1>
+            </div>
+            <form (ngSubmit)="changePass()">
+              <mat-form-field style="margin-right:5px">
+                <mat-label for="oldPass">Old Password</mat-label>
+                <input matInput type="password" id="oldPass" placeholder="Enter old Password" [(ngModel)]="oldPass" name="oldPass" required>
+              </mat-form-field>
+              <mat-form-field style="margin-right:5px">
+                <mat-label for="Pass">Change Password</mat-label>
+                <input matInput type="password" id="Pass" placeholder="Enter new Password" [(ngModel)]="newPass" name="newPass" required>
+              </mat-form-field>
+              <mat-form-field style="margin-right:5px">
+                <mat-label for="confirm">Confirm Password</mat-label>
+                <input matInput type="password" id="confirm" placeholder="Re-Enter new Password" [(ngModel)]="confirmPass" name="confirm" required>
+              </mat-form-field>
+              <mat-card-actions class="text-right" style="margin-right:20px">
+                <button type="submit" id="submit-Pass" mat-raised-button>Submit</button>
+                <a routerLink="/patient-profile"><button type="button" id="cancel-Pass" mat-raised-button>Cancel</button></a>
+              </mat-card-actions>
+            </form>
+          </mat-card>
+        </div>
+      </div>
+    </ng-template>
+</div>

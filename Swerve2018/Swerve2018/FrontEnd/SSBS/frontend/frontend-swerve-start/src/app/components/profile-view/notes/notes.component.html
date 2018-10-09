@@ -1,0 +1,20 @@
+<div class="text-center" style="margin: 20px;">
+    <mat-card-title style="color: #016cae">Notes</mat-card-title>
+  </div>
+<div *ngFor="let n of notes">
+  <mat-card>
+    <button mat-icon-button (click)="removeNote(n)"><span class="glyphicon glyphicon-remove"></span></button> {{n}}
+  </mat-card>
+</div>
+<div *ngIf="(isAdmin||isPhys)">
+  <mat-card>
+    <form (ngSubmit)="onSubmitNote(ff)" #ff="ngForm" class="text-center" novalidate>
+      <mat-form-field style="margin-right:5px">
+        <mat-label>Note</mat-label>
+        <input matInput type="text" id="note" placeholder="Enter Note" [(ngModel)]="note" name="note" required>
+      </mat-form-field>
+      <!--</div>-->
+      <button mat-raised-button type="submit">Submit</button>
+    </form>
+  </mat-card>
+</div>

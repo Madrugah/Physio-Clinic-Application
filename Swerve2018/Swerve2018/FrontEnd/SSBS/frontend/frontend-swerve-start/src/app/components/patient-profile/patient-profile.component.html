@@ -1,0 +1,231 @@
+<div class="container">
+  <div *ngIf="isAllowed">
+    <div class="text-center col-xs-12">
+      <mat-card-title style="color: #016cae; padding:20px;">Patient Profiles</mat-card-title>
+    </div>
+    <div style="text-align:center">
+      <h1>
+      </h1>
+    </div>
+
+    <!--<mat-form-field>-->
+    <!--  <mat-select placeholder="Select user email address" [(value)]="valueOfArray" required>-->
+    <!--   <mat-option *ngFor="let y of x" value="{{y}}">-->
+    <!--       {{y}}-->
+    <!--   </mat-option>-->
+    <!--  </mat-select> -->
+    <!--</mat-form-field>-->
+    <!--<button mat-raised-button (click)="onButtonPress()">Select</button>-->
+
+    <div class="button-row">
+      <mat-label class="center">Last Name:</mat-label>
+      <br>
+      <mat-button-toggle-group>
+        <mat-button-toggle (click)="onFilter('A')">A</mat-button-toggle>
+        <mat-button-toggle (click)="onFilter('B')">B</mat-button-toggle>
+        <mat-button-toggle (click)="onFilter('C')">C</mat-button-toggle>
+        <mat-button-toggle (click)="onFilter('D')">D</mat-button-toggle>
+        <mat-button-toggle (click)="onFilter('E')">E</mat-button-toggle>
+        <mat-button-toggle (click)="onFilter('F')">F</mat-button-toggle>
+        <mat-button-toggle (click)="onFilter('G')">G</mat-button-toggle>
+        <mat-button-toggle (click)="onFilter('H')">H</mat-button-toggle>
+        <mat-button-toggle (click)="onFilter('I')">I</mat-button-toggle>
+        <mat-button-toggle (click)="onFilter('J')">J</mat-button-toggle>
+        <mat-button-toggle (click)="onFilter('K')">K</mat-button-toggle>
+        <mat-button-toggle (click)="onFilter('L')">L</mat-button-toggle>
+        <mat-button-toggle (click)="onFilter('M')">M</mat-button-toggle>
+        <mat-button-toggle (click)="onFilter('N')">N</mat-button-toggle>
+        <mat-button-toggle (click)="onFilter('O')">O</mat-button-toggle>
+        <mat-button-toggle (click)="onFilter('P')">P</mat-button-toggle>
+        <mat-button-toggle (click)="onFilter('Q')">Q</mat-button-toggle>
+        <mat-button-toggle (click)="onFilter('R')">R</mat-button-toggle>
+        <mat-button-toggle (click)="onFilter('S')">S</mat-button-toggle>
+        <mat-button-toggle (click)="onFilter('T')">T</mat-button-toggle>
+        <mat-button-toggle (click)="onFilter('U')">U</mat-button-toggle>
+        <mat-button-toggle (click)="onFilter('V')">V</mat-button-toggle>
+        <mat-button-toggle (click)="onFilter('W')">W</mat-button-toggle>
+        <mat-button-toggle (click)="onFilter('X')">X</mat-button-toggle>
+        <mat-button-toggle (click)="onFilter('Y')">Y</mat-button-toggle>
+        <mat-button-toggle (click)="onFilter('Z')">Z</mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+    <br>
+    <div class="button-row">
+      <mat-label class="center">First Name:</mat-label>
+      <br>
+      <mat-button-toggle-group>
+        <mat-button-toggle id="AA" (click)="onFilterFirst('A')">A</mat-button-toggle>
+        <mat-button-toggle (click)="onFilterFirst('B')">B</mat-button-toggle>
+        <mat-button-toggle (click)="onFilterFirst('C')">C</mat-button-toggle>
+        <mat-button-toggle (click)="onFilterFirst('D')">D</mat-button-toggle>
+        <mat-button-toggle (click)="onFilterFirst('E')">E</mat-button-toggle>
+        <mat-button-toggle (click)="onFilterFirst('F')">F</mat-button-toggle>
+        <mat-button-toggle (click)="onFilterFirst('G')">G</mat-button-toggle>
+        <mat-button-toggle (click)="onFilterFirst('H')">H</mat-button-toggle>
+        <mat-button-toggle (click)="onFilterFirst('I')">I</mat-button-toggle>
+        <mat-button-toggle (click)="onFilterFirst('J')">J</mat-button-toggle>
+        <mat-button-toggle (click)="onFilterFirst('K')">K</mat-button-toggle>
+        <mat-button-toggle (click)="onFilterFirst('L')">L</mat-button-toggle>
+        <mat-button-toggle (click)="onFilterFirst('M')">M</mat-button-toggle>
+        <mat-button-toggle (click)="onFilterFirst('N')">N</mat-button-toggle>
+        <mat-button-toggle (click)="onFilterFirst('O')">O</mat-button-toggle>
+        <mat-button-toggle (click)="onFilterFirst('P')">P</mat-button-toggle>
+        <mat-button-toggle (click)="onFilterFirst('Q')">Q</mat-button-toggle>
+        <mat-button-toggle (click)="onFilterFirst('R')">R</mat-button-toggle>
+        <mat-button-toggle (click)="onFilterFirst('S')">S</mat-button-toggle>
+        <mat-button-toggle (click)="onFilterFirst('T')">T</mat-button-toggle>
+        <mat-button-toggle (click)="onFilterFirst('U')">U</mat-button-toggle>
+        <mat-button-toggle (click)="onFilterFirst('V')">V</mat-button-toggle>
+        <mat-button-toggle (click)="onFilterFirst('W')">W</mat-button-toggle>
+        <mat-button-toggle (click)="onFilterFirst('X')">X</mat-button-toggle>
+        <mat-button-toggle (click)="onFilterFirst('Y')">Y</mat-button-toggle>
+        <mat-button-toggle (click)="onFilterFirst('Z')">Z</mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+    <br>
+    <!--START OF SEARCH-->
+    <div class="col-xs-12 text-center">
+      <form id="search" (ngSubmit)="onSearch(f)" #f="ngForm">
+        <mat-form-field style="margin-right:5px">
+          <mat-label>Search Term</mat-label>
+          <input matInput placeholder="Search" name="Search" ngModel>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Columns</mat-label>
+          <mat-select placeholder="All Columns" multiple [formControl]="ColChoose">
+            <mat-option *ngFor="let Col of ColList" [value]="Col">{{Col}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <button mat-raised-button type="submit"> Search </button>
+        <button mat-raised-button routerLink="/admin-dashboard">Back</button>
+      </form>
+    </div>
+
+    <div class="col-xs-offset-4 col-xs-4" style="height: 20px">
+      <div *ngIf="Loading">
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+      </div>
+    </div>
+    <!--MAT TABLE-->
+    <div class="example-container mat-elevation-z8 col-sm-offset-1 col-sm-10" style="padding-bottom:20px">
+      <mat-table #table [dataSource]="dataSource" matSort>
+
+        Button Column
+        <ng-container matColumnDef="button">
+          <!--THIS NAME MATTERS-->
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Actions </mat-header-cell>
+          <mat-cell *matCellDef="let element; let i = index;">
+            <!--this allows you to send index with buttons-->
+            <button mat-icon-button (click)="editProfileNav(element.email)"><span class="glyphicon glyphicon-edit"></span></button>
+            <!--<button mat-icon-button (click)="onDelete(i)"><span class="glyphicon glyphicon-remove"></span></button>                    -->
+          </mat-cell>
+        </ng-container>
+
+
+        Family Name Column
+        <ng-container matColumnDef="familyName">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Last Name </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.familyName}}
+            <!--value-->
+          </mat-cell>
+        </ng-container>
+
+        Given Name Column
+        <ng-container matColumnDef="givenName">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> First Name </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.givenName}} </mat-cell>
+        </ng-container>
+
+        Birth Date Column
+        <ng-container matColumnDef="birthDate">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Birth Date </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.DOB}} </mat-cell>
+        </ng-container>
+
+        Email Column
+        <ng-container matColumnDef="email">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Email </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns; let i = index;"></mat-row>
+      </mat-table>
+      <mat-paginator #paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]">
+      </mat-paginator>
+
+    </div>
+
+    <!--<old> -->
+    <div *ngIf="showThis" style="margin-top:20px">
+      <form (ngSubmit)="onSubmit(f)" #f="ngForm" novalidate>
+        <div class="text-center col-xs-12">
+          <h1>Edit patient profile</h1>
+        </div>
+        <div class="form-group col-sm-6">
+          <label for="email">Email</label>
+          <input type="text" class="form-control" id="email" placeholder="Enter Email" [(ngModel)]="email" name="email" defaultValue={{email}} required>
+        </div>
+        <div class="form-group col-sm-6">
+          <label for="givenName">Given name</label>
+          <input type="text" class="form-control" id="givenName" placeholder="Enter given name" [(ngModel)]="givenName" name="givenName" defaultValue={{givenName}} required>
+        </div>
+        <div class="form-group col-sm-6">
+          <label for="familyName">Family name</label>
+          <input type="text" class="form-control" id="familyName" placeholder="enter family name" [(ngModel)]="familyName" name="familyName" defaultValue={{familyName}} required>
+        </div>
+        <div class="form-group col-sm-6">
+          <label for="DOB">Date of Birth</label>
+          <input type="date" class="form-control" id="DOB" [(ngModel)]="DOB" name="DOB" defaultValue={{DOB}} required>
+        </div>
+        <div class="form-group col-sm-6">
+          <label for="postalCode">Postal Code</label>
+          <input type="text" class="form-control" id="postalCode" placeholder="Enter postal code" [(ngModel)]="postalCode" name="postalCode" defaultValue={{postalCode}} required>
+        </div>
+        <div class="form-group col-sm-6">
+          <label for="phone">Phone Number</label>
+          <input type="text" class="form-control" id="phone" placeholder="Enter phone number" [(ngModel)]="phone" name="phone" defaultValue={{postalCode}} required>
+        </div>
+        <div class="form-group col-sm-6">
+          <label for="maritalStatus">Marital Status</label>
+          <input type="text" class="form-control" id="maritalStatus" placeholder="Enter martial status" [(ngModel)]="maritalStatus" name="maritalStatus" defaultValue={{maritalStatus}} required>
+        </div>
+        <div class="form-group col-sm-6">
+          <label for="healthCardNo">Health Card Number</label>
+          <input type="text" class="form-control" id="healthCardNo" placeholder="Enter Health Card Number" [(ngModel)]="healthCardNo" name="healthCardNo" defaultValue={{healthCardNo}} required>
+        </div>
+        <div class="form-group col-sm-6">
+          <label for="occupation">Occupation</label>
+          <input type="text" class="form-control" id="occupation" placeholder="enter occupation" [(ngModel)]="occupation" name="occupation" defaultValue={{occupation}} required>
+        </div>
+        <div class="form-group col-sm-6">
+          <label for="country">Country</label>
+          <input type="text" class="form-control" id="country" placeholder="enter country" [(ngModel)]="country" name="country" defaultValue={{country}} required>
+        </div>
+        <div class="form-group col-sm-6">
+          <label for=province>Province</label>
+          <input type="text" class="form-control" id="province" placeholder="enter province" [(ngModel)]="province" name="province" defaultValue={{province}} required>
+        </div>
+        <div class="form-group col-sm-6">
+          <label for="city">City</label>
+          <input type="text" class="form-control" id="city" placeholder="Enter City" [(ngModel)]="city" name="city" defaultValue={{city}} required>
+        </div>
+
+        <!--<div class="form-group col-sm-6">-->
+        <!--  <label for="privacy"> Public? </label>-->
+        <!--  <input type="checkbox" class="form-control" id="privacy" value = true [(ngModel)]="privacy" name="privacy" required>-->
+        <!--</div>-->
+        <div class="text-center col-xs-12">
+          <button type="submit" class="btn btn-default">Submit</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+</div>
+
+
+<!--<mat-card *ngIf="answerDisplay">-->
+<!--  <h1>{{ answerDisplay }}, you're damn right.</h1>-->
+<!--</mat-card>-->

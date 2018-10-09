@@ -1,0 +1,67 @@
+<mat-card>
+  <div class="text-center col-xs-12">
+    <mat-card-title style="color: #016cae; padding:10px;">Edit the Home Page</mat-card-title>
+  </div>
+  <form (ngSubmit)="onButtonPress(f)" #f="ngForm" class="text-center" novalidate>
+    <mat-form-field style="margin-right:5px">
+      <textarea matInput type="text" id="TLT" placeholder="Main Title" [(ngModel)]="TLT" name="TLT"></textarea>
+    </mat-form-field>
+    <mat-form-field style="margin-right:5px">
+      <textarea matInput type="text" id="TLS" placeholder="Main Subtitle" [(ngModel)]="TLS" name="TLS"></textarea>
+    </mat-form-field>
+    <mat-form-field style="margin-right:5px">
+      <textarea matInput type="text" id="TLB" rows="8" placeholder="Main Body" [(ngModel)]="TLB" name="TLB"></textarea>
+    </mat-form-field>
+    <mat-form-field style="margin-right:5px">
+      <textarea matInput type="text" id="TRT" placeholder="Top Right Title" [(ngModel)]="TRT" name="TRT"></textarea>
+    </mat-form-field>
+    <mat-form-field style="margin-right:5px">
+      <textarea matInput type="text" id="TRB" rows="8" placeholder="Top Right Body" [(ngModel)]="TRB" name="TRB"></textarea>
+    </mat-form-field>
+    <mat-form-field style="margin-right:5px">
+      <textarea matInput type="text" id="BRT" placeholder="Bottom Right Title" [(ngModel)]="BRT" name="BRT"></textarea>
+    </mat-form-field>
+    <mat-form-field style="margin-right:5px">
+      <textarea matInput type="text" id="BRB" rows="8" placeholder="Bottom Right Body" [(ngModel)]="BRB" name="BRB"></textarea>
+    </mat-form-field>
+    <br/>
+    <button mat-raised-button type="submit">Submit</button>
+    <button mat-raised-button routerLink="/admin-dashboard">Back</button>
+
+  </form>
+</mat-card>
+
+
+
+<!--<form (ngSubmit)="onButtonPress(f)" #f="ngForm" class="text-center" novalidate>-->
+<!--    <mat-form-field>-->
+<!--      <textarea id="MT" value={{TLT}} matInput placeholder="Main Title"></textarea>-->
+<!--    </mat-form-field>-->
+
+<!--    <mat-form-field>-->
+<!--      <textarea id="MST" value={{TLS}} matInput placeholder="Main Subtitle"></textarea>-->
+<!--    </mat-form-field>-->
+
+<!--    <mat-form-field>-->
+<!--      <textarea id="MB" value={{TLB}} matInput placeholder="Main Body"></textarea>-->
+<!--    </mat-form-field>-->
+
+<!--    <mat-form-field>-->
+<!--      <textarea id="TRT" value={{TRT}} matInput placeholder="Top Right Title"></textarea>-->
+<!--    </mat-form-field>-->
+
+<!--    <mat-form-field>-->
+<!--      <textarea id="TRB" value={{TRB}} matInput placeholder="Top Right Body"></textarea>-->
+<!--    </mat-form-field>-->
+
+<!--    <mat-form-field>-->
+<!--      <textarea id="BRT" value={{BRT}} matInput placeholder="Bottom Right Title"></textarea>-->
+<!--    </mat-form-field>-->
+
+<!--    <mat-form-field>-->
+<!--      <textarea id="BRB" value={{BRB}} matInput placeholder="Bottom Right Body"></textarea>-->
+<!--    </mat-form-field>-->
+
+<!--</div>-->
+<!--  <button mat-raised-button type="submit">Submit</button>-->
+<!--</form>-->

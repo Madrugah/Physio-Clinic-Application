@@ -1,0 +1,89 @@
+<!--only edit button & styling needs to be done-->
+<!--<br> <br> <br>-->
+<!--create and edit need to be morphed into Modals-->
+<!--<br> <br> <br> -->
+<div *ngIf="isAllowed">
+
+  <h2 class="text-center">Exercises</h2>
+  <div class="col-xs-12 text-center" style="margin-bottom:20px">
+    <button mat-raised-button type="button" class="btn btn-primary" (click)="onCreate()">Create New Exercise</button>
+
+
+
+
+
+  </div>
+  <!--START OF SEARCH-->
+  <div class="col-xs-12 text-center">
+    <form id="search" (ngSubmit)="onSearch(f)" #f="ngForm">
+      <mat-form-field style="margin-right:5px">
+        <mat-label>Search Term</mat-label>
+        <input matInput placeholder="Search" name="Search" ngModel>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Columns</mat-label>
+        <mat-select placeholder="All Columns" multiple [formControl]="ColChoose">
+          <mat-option *ngFor="let Col of ColList" [value]="Col">{{Col}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button mat-raised-button type="submit"> Search </button>
+    </form>
+  </div>
+  <div class="col-xs-offset-4 col-xs-4" style="height: 20px">
+    <div *ngIf="Loading">
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </div>
+  </div>
+  <!--MAT TABLE-->
+  <div class="example-container mat-elevation-z8 col-sm-offset-1 col-sm-10" style="padding-bottom:20px">
+    <mat-table #table [dataSource]="dataSource" matSort>
+
+      Button Column
+      <ng-container matColumnDef="button">
+        <!--THIS NAME MATTERS-->
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Actions </mat-header-cell>
+        <mat-cell *matCellDef="let element; let i = index;">
+          <!--this allows you to send index with buttons-->
+          <button mat-icon-button (click)="onEdit(i)"><span class="glyphicon glyphicon-edit"></span></button>
+          <button mat-icon-button (click)="onDelete(i)"><span class="glyphicon glyphicon-remove"></span></button>
+        </mat-cell>
+      </ng-container>
+
+      Name Column
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.name}}
+          <!--value-->
+        </mat-cell>
+      </ng-container>
+
+      description Column
+      <ng-container matColumnDef=" description">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Description </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.description}} </mat-cell>
+      </ng-container>
+
+      Objectives Column
+      <ng-container matColumnDef="objectives">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Objectives </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.objectives}} </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns; let i = index;"></mat-row>
+    </mat-table>
+    <mat-paginator #paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]">
+    </mat-paginator>
+
+  </div>
+</div>
+<!--<div *ngIf="del">-->
+<!--    the following exercise was deleted: {{del}}-->
+<!--</div>-->
+
+<!--<div style="text-align:center">-->
+<!--    <app-exercise-dialog></app-exercise-dialog>-->
+<!--</div>-->
+
+<!-- for modal exercise creation -->
+<br>

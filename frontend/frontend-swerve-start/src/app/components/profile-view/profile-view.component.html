@@ -1,0 +1,188 @@
+<div *ngIf="allowed">
+  <div *ngIf="isReset;then content else other_content"></div>
+  <ng-template #content>
+    <mat-card>
+      <mat-card-content>
+        <h2 class="example-h2">{{name}}</h2>
+        <mat-tab-group class="center">
+          <mat-tab label="My Account">
+            <div class="demo-tab-content">
+              <app-create-profile></app-create-profile>
+            </div>
+          </mat-tab>
+          <mat-tab label="Documents">
+            <div class="demo-tab-content">
+              Change Password to View
+            </div>
+          </mat-tab>
+          <mat-tab label="Accounting">
+            <div class="demo-tab-content">
+              Change Password to View
+            </div>
+          </mat-tab>
+          <mat-tab label="Messages">
+            <div>
+              Change Password to View
+            </div>
+          </mat-tab>
+          <mat-tab label="Menus">
+            <div class="demo-tab-content">
+              Change Password to View
+            </div>
+          </mat-tab>
+          <mat-tab label="My Test Results">
+            <div class="demo-tab-content">
+              Change Password to View
+            </div>
+          </mat-tab>
+          <mat-tab label="Photos">
+            <div>
+              Change Password to View
+            </div>
+          </mat-tab>
+        </mat-tab-group>
+      </mat-card-content>
+    </mat-card>
+  </ng-template>
+  <ng-template #other_content>
+    <mat-card>
+      <mat-card-content>
+        <h2 class="example-h2">{{name}}</h2>
+        <mat-tab-group (selectedTabChange)="onLinkClick($event)" class="center">
+          <mat-tab label="My Account">
+            <div class="demo-tab-content">
+              <app-create-profile></app-create-profile>
+            </div>
+          </mat-tab>
+          <mat-tab label="Appointments">
+            <div class="demo-tab-content">
+              <app-client-appointments></app-client-appointments>
+            </div>
+          </mat-tab>
+          <mat-tab label="Progress Report" >
+            <div class="demo-tab-content">
+
+              <div>
+                <canvas id="myChart" width="700" height="400"></canvas>
+              </div>
+
+            </div>
+          </mat-tab>
+          <mat-tab label="Accounting">
+            <div class="demo-tab-content">
+              <h5 *ngFor="let rec of receipts">
+              Payment {{rec.payId}}: <br>
+              Purchase of ${{rec.amount}} Plan, <br>
+              At {{rec.create_time}} <br>
+                
+              </h5> 
+            </div>
+          </mat-tab>
+          <mat-tab label="Messages">
+            <div class="col-xs-12">
+              <app-messages [messages]="messages"></app-messages>
+            </div>
+          </mat-tab>
+          <mat-tab label="Menus">
+            <app-menus [myPlans]="myPlans"></app-menus>
+          </mat-tab>
+          <mat-tab label="My Test Results">
+            <app-tests [finishedResults] = "finishedResults"></app-tests>
+          </mat-tab>
+          <div *ngIf="isAllowed">
+            <mat-tab label="Notes">
+              <app-notes [notes]="notes"></app-notes>
+              <!--<div *ngFor="let n of notes">-->
+              <!--  <mat-card>-->
+              <!--    <button mat-icon-button (click)="removeNote(n)"><span class="glyphicon glyphicon-remove"></span></button> {{n}}-->
+              <!--  </mat-card>-->
+              <!--</div>-->
+              <!--<div *ngIf="isAdmin">-->
+              <!--  <mat-card>-->
+              <!--    <form (ngSubmit)="onSubmitNote(ff)" #ff="ngForm" class="text-center" novalidate>-->
+              <!--      <mat-form-field style="margin-right:5px">-->
+              <!--        <mat-label>Note</mat-label>-->
+              <!--        <input matInput type="text" id="note" placeholder="Enter Note" [(ngModel)]="note" name="note" required>-->
+              <!--      </mat-form-field>-->
+                    <!--</div>-->
+              <!--      <button mat-raised-button type="submit">Submit</button>-->
+              <!--    </form>-->
+              <!--  </mat-card>-->
+              <!--</div>-->
+            </mat-tab>
+          </div>
+          <mat-tab label="Photos">
+            <mat-grid-list cols="2" rowHeight="250px">
+              <div *ngFor="let file of files; let i = index">
+                <mat-grid-tile>
+                  <mat-card style="max-height:250px; margin:20px">
+                    <img mat-card-image src={{file}} alt="i" style="max-height:175px; width: auto">
+                    <mat-card-actions class="text-center">
+                      <button mat-raised-button (click)="onRemoved(i)" style="max-height:75px">Delete</button>
+                    </mat-card-actions>
+                  </mat-card>
+                </mat-grid-tile>
+              </div>
+            </mat-grid-list>
+            <div class="col-sm-12">
+              <image-upload (uploadFinished)="onUploadFinished($event)" [style]="customStyle" [uploadedFiles]="files"></image-upload>
+            </div>
+          </mat-tab>
+          <mat-tab label="Print Menu">
+            <div class="demo-tab-content">
+              <mat-card>
+              <mat-form-field>
+                <mat-select [(ngModel)]="selectedValue" placeholder="Tabs">
+                  <mat-option *ngFor="let t of tabList" [value]="t">
+                    {{ t }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <button mat-raised-button (click)="addToList()">Add to Print Menu</button>
+              <button mat-raised-button (click)="resetList()">Reset</button>
+              </mat-card>
+              <mat-card>
+                <div *ngIf="showAccount">
+                  <app-create-profile></app-create-profile>
+                </div>
+                <div *ngIf="showAppointments">
+                  <app-client-appointments></app-client-appointments>
+                </div>
+                <div *ngIf="showAccounting">
+                  
+                </div>
+                <div *ngIf="showMessages">
+                  <app-messages [messages]="messages"></app-messages>
+                </div>
+                <div *ngIf="showMenus">
+                  <app-menus [myPlans]="myPlans"></app-menus>
+                </div>
+                <div *ngIf="showResults">
+                  <app-tests [finishedResults] = "finishedResults"></app-tests>
+                </div>
+                <button mat-raised-button (click)="printPage()">Print</button>
+              </mat-card>
+            </div>
+          </mat-tab>
+          <div *ngIf="isAllowed">
+            <mat-tab label="Menu Builder">
+              <app-create-plan></app-create-plan>
+            </mat-tab>
+          </div>
+          <div *ngIf="isAdmin">
+            <mat-tab label="Delete">
+              <mat-card style="max-height:250px; margin:20px">
+                <p>
+                  Are you sure you would like to delete this account?
+                </p>
+                <button mat-raised-button (click)="deleteAcc()" style="max-height:75px">Yes</button>
+              </mat-card>
+            </mat-tab>
+          </div>
+        </mat-tab-group>
+      </mat-card-content>
+    </mat-card>
+  </ng-template>
+</div>
+<div class="col-xs-12" style>
+</div>

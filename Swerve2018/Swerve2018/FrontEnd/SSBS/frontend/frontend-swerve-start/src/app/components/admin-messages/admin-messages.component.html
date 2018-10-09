@@ -1,0 +1,38 @@
+<div *ngIf="isAllowed">
+    <div class="text-center" style="margin: 20px">
+        <mat-card-title style="color: #016cae">Unread Messages</mat-card-title>
+        <br/>
+        <button mat-raised-button routerLink="/admin-dashboard">Back</button>
+
+    </div>
+    <div class="example-container mat-elevation-z8 col-sm-offset-1 col-sm-10" style="padding-bottom:20px">
+        <mat-table #table [dataSource]="dataSource" matSort>
+
+            Button Column
+            <ng-container matColumnDef="button">
+                <!--THIS NAME MATTERS-->
+                <mat-header-cell *matHeaderCellDef mat-sort-header> View Profile </mat-header-cell>
+                <mat-cell *matCellDef="let element;">
+                    <!--this allows you to send index with buttons-->
+                    <button mat-icon-button (click)="editProfileNav(element.email)"><span class="glyphicon glyphicon-user"></span></button>
+                </mat-cell>
+            </ng-container>
+
+
+
+            email Column
+            <ng-container matColumnDef="email">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Email </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
+            </ng-container>
+
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns; let i = index;"></mat-row>
+        </mat-table>
+        <mat-paginator #paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]">
+        </mat-paginator>
+
+    </div>
+
+</div>

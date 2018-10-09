@@ -1,0 +1,36 @@
+<!--MAT TABLE-->
+<div class="example-container mat-elevation-z8 col-sm-offset-1 col-sm-10" style="padding-bottom:20px">
+  
+  <mat-table #table [dataSource]="dataSource" matSort>
+
+     Button Column 
+    <ng-container matColumnDef="button"><!--THIS NAME MATTERS-->
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Actions </mat-header-cell>
+      <mat-cell *matCellDef="let element; let i = index;"> <!--this allows you to send index with buttons-->
+        <button mat-icon-button (click)="onConfirm(element)"><span class="glyphicon glyphicon-ok"></span></button>                    
+        <button mat-icon-button	(click)="onDelete(element)"><span class="glyphicon glyphicon-remove"></span></button>                    
+      </mat-cell>
+    </ng-container>
+    
+     Name Column 
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Pending Appointments </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.title}}<!--value--> </mat-cell>
+    </ng-container>
+    
+    Appointment Date Column
+    <ng-container matColumnDef="date">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Appointment Date </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.startDate}}<!--value--> </mat-cell>
+    </ng-container>
+
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns; let i = index;"></mat-row>
+  </mat-table>
+  <mat-paginator #paginator
+                 [pageSize]="5"
+                 [pageSizeOptions]="[5, 10, 20]">
+  </mat-paginator>
+ 
+</div>

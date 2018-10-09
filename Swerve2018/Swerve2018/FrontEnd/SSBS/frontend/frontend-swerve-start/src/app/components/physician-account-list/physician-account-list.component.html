@@ -1,0 +1,50 @@
+
+<div class="col-sm-12" style="margin-bottom:20px">
+
+  <div class="example-container mat-elevation-z8 col-sm-offset-1 col-sm-10" style="padding-bottom:20px; padding-top:20px;">
+
+    <div class="text-center" style="margin: 10px 0">
+      <mat-card-title style="color: #016cae">Choose a Physician to Book an Appointment With</mat-card-title>
+
+    </div>
+    <mat-table #table [dataSource]="dataSource" matSort>
+
+      Button Column
+      <ng-container matColumnDef="button">
+        <!--THIS NAME MATTERS-->
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Actions </mat-header-cell>
+        <mat-cell *matCellDef="let element; let i = index;">
+          <!--this allows you to send index with buttons-->
+          <button mat-icon-button (click)="deletePhys(i)"><span class="glyphicon glyphicon-remove"></span></button>
+        </mat-cell>
+      </ng-container>
+
+      Name Column
+      <ng-container matColumnDef="first">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> First Name </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.first}}
+          <!--value-->
+        </mat-cell>
+      </ng-container>
+      
+      
+
+      description Column
+      <ng-container matColumnDef="last">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Last Name </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.last}} </mat-cell>
+      </ng-container>
+      
+      <ng-container matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Email </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.email}}
+          <!--value-->
+        </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns; let i = index;"></mat-row>
+    </mat-table>
+    <mat-paginator #paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]">
+    </mat-paginator>
+  </div>
+</div>

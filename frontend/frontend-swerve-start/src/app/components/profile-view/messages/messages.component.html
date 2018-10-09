@@ -1,0 +1,116 @@
+<!--<mat-form-field style="width:100%;">-->
+<!--  <textarea matInput placeholder="Enter new Message" style="min-height:100px" (ngModel)="newMessage"></textarea>-->
+<!--</mat-form-field>-->
+<!--<button (click)="sendMessage()">Send Message</button>-->
+
+<!--<mat-form-field style="width:100%;">-->
+<!--  <textarea matInput placeholder="Enter new Message" style="min-height:100px" (ngModel)="newMessage"></textarea>-->
+<!--</mat-form-field>-->
+
+
+
+<!--<mat-accordion>-->
+<!--  <mat-expansion-panel>-->
+<!--    <mat-expansion-panel-header>-->
+<!--      <mat-panel-title>-->
+<!--        Personal data-->
+<!--      </mat-panel-title>-->
+<!--      <mat-panel-description>-->
+<!--        Type your name and age-->
+<!--      </mat-panel-description>-->
+<!--    </mat-expansion-panel-header>-->
+
+<!--    <mat-form-field>-->
+<!--      <input matInput placeholder="First name">-->
+<!--    </mat-form-field>-->
+
+<!--    <mat-form-field>-->
+<!--      <input matInput placeholder="Age">-->
+<!--    </mat-form-field>-->
+<!--  </mat-expansion-panel>-->
+<!--  <mat-expansion-panel>-->
+<!--    <mat-expansion-panel-header>-->
+<!--      <mat-panel-title>-->
+<!--        Personal data-->
+<!--      </mat-panel-title>-->
+<!--      <mat-panel-description>-->
+<!--        Type your name and age-->
+<!--      </mat-panel-description>-->
+<!--    </mat-expansion-panel-header>-->
+
+<!--    <mat-form-field>-->
+<!--      <input matInput placeholder="First name">-->
+<!--    </mat-form-field>-->
+
+<!--    <mat-form-field>-->
+<!--      <input matInput placeholder="Age">-->
+<!--    </mat-form-field>-->
+<!--  </mat-expansion-panel>-->
+<!--  <mat-expansion-panel (opened)="panelOpenState = true"-->
+<!--                       (closed)="panelOpenState = false">-->
+<!--    <mat-expansion-panel-header>-->
+<!--      <mat-panel-title>-->
+<!--        Self aware panel-->
+<!--      </mat-panel-title>-->
+<!--      <mat-panel-description>-->
+<!--        Currently I am {{panelOpenState ? 'open' : 'closed'}}-->
+<!--      </mat-panel-description>-->
+<!--    </mat-expansion-panel-header>-->
+<!--    <p>I'm visible because I am open</p>-->
+<!--  </mat-expansion-panel>-->
+<!--</mat-accordion>-->
+
+
+
+      <!--<mat-accordion style="margin:10px">  -->
+      <!--  <mat-expansion-panel>-->
+      <!--    <mat-expansion-panel-header>-->
+      <!--      New Message-->
+      <!--    </mat-expansion-panel-header>-->
+      <!--      <mat-form-field style="width:100%;">-->
+      <!--        <textarea matInput placeholder="Enter new Message" style="min-height:100px" (ngModel)="newMessage"></textarea>-->
+      <!--      </mat-form-field>-->
+      <!--    <mat-action-row>-->
+      <!--      <button mat-raised-button (click)="sendMessage()">Send Message</button>-->
+      <!--    </mat-action-row>-->
+      <!--  </mat-expansion-panel>-->
+      <!--  <mat-expansion-panel>-->
+      <!--    <mat-expansion-panel-header>-->
+      <!--      New Message-->
+      <!--    </mat-expansion-panel-header>-->
+      <!--      <mat-form-field style="width:100%;">-->
+      <!--        <textarea matInput placeholder="Enter new Message" style="min-height:100px" (ngModel)="newMessage"></textarea>-->
+      <!--      </mat-form-field>-->
+      <!--    <mat-action-row>-->
+      <!--      <button mat-raised-button (click)="sendMessage()">Send Message</button>-->
+      <!--    </mat-action-row>-->
+      <!--  </mat-expansion-panel>-->
+      <!--</mat-accordion>-->
+      
+      
+      
+      <!--<mat-accordion>  -->
+      <!--  <mat-expansion-panel  *ngFor="let question of selectedQuestions; let i = index">-->
+      <!--    <mat-expansion-panel-header>-->
+      <!--      {{question.name}}-->
+      <!--    </mat-expansion-panel-header>-->
+      <!--      {{question.questionText}}<br>-->
+      <!--      <i>{{question.helpDescription}}</i> -->
+      <!--    <mat-action-row>-->
+      <!--      <button mat-raised-button type="button" (click)="removeQuestion(i)">Remove</button>-->
+      <!--    </mat-action-row>-->
+      <!--  </mat-expansion-panel>-->
+      <!--</mat-accordion>-->
+      
+      
+      
+      <mat-accordion>  
+        <mat-expansion-panel  *ngFor="let message of messagesFull; let i = index">
+          <mat-expansion-panel-header>
+            {{message.myMessage}}
+          </mat-expansion-panel-header>
+          <mat-action-row>
+            <button mat-raised-button type="button" (click)="sendMessage(i)">Send Message</button>
+          </mat-action-row>
+        </mat-expansion-panel>
+      </mat-accordion>

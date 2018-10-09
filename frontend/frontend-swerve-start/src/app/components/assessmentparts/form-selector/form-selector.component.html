@@ -1,0 +1,12 @@
+<div *ngIf = "adminStatus || physStatus">
+<h1>Select A Form to Edit</h1>
+<div class="text-center">
+  <button mat-raised-button color="blue" (click)="newFormRedirect()" >Create New Assessment Form</button>
+</div>
+  <div class="col-lg-12">
+      <div class="col-lg-8 col-lg-offset-2">
+        <app-assessment-list (uploaded)="checkForDelete($event)" [edit]="isForEdit"></app-assessment-list>
+      </div>
+  </div>
+
+</div>

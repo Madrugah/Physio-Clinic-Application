@@ -1,0 +1,25 @@
+{
+  "name": "self_start_body_smart_backend",
+  "version": "1.0.0",
+  "description": "the backend routes for SE3350 final project, client: marcotte physiotherapy",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon server.js"
+  },
+  "author": "Swerve Co.",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:UWO-ECE-Software-Engineering/Swerve.git"
+  },
+  "devDependencies": {
+    "nodemon": "^1.14.11"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
+    "mongoose": "^5.0.1",
+    "multer": "^1.3.0"
+  }
+}

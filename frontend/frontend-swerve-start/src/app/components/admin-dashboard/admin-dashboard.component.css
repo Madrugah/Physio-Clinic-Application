@@ -1,0 +1,8 @@
+.navSide{
+  background-color:#22244d; 
+  height:100vh; 
+  position:fixed; 
+  margin-top:-65px; 
+  z-index:-1;
+  color: white;
+}

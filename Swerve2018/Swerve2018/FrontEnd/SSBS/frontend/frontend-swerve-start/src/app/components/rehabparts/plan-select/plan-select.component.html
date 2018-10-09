@@ -1,0 +1,50 @@
+<div class="text-center" style="margin: 20px">
+  <mat-card-title style="color: #016cae">Select A Menu to Edit</mat-card-title>
+</div>
+<!--START OF SEARCH-->
+
+<div class="col-xs-12 text-center">
+  <a routerLink="/rehab-plan" style="color:black"><button mat-raised-button > Create New Menu </button></a>
+  <button mat-raised-button routerLink="/admin-dashboard">Back</button>
+
+  <form id="search" (ngSubmit)="onSearch(f)" #f="ngForm">
+    <mat-form-field style="margin-right:5px">
+      <mat-label>Search Menu Name</mat-label>
+      <input matInput placeholder="Search" name="Search" ngModel>
+    </mat-form-field>
+
+    <button mat-raised-button type="submit"> Search </button>
+  </form>
+</div>
+<div class="col-xs-offset-4 col-xs-4" style="height: 20px">
+  <div *ngIf="Loading">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </div>
+</div>
+
+<div class="example-container mat-elevation-z8 col-sm-offset-1 col-sm-10" style="margin-bottom:40px">
+  <mat-table #table [dataSource]="dataSource" matSort>
+
+    Button Column
+    <ng-container matColumnDef="button">
+      <!--THIS NAME MATTERS-->
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Actions </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <!--this allows you to send index with buttons-->
+        <button mat-icon-button (click)="editPlan(element)"><span class="glyphicon glyphicon-edit"></span></button>
+        <button mat-icon-button (click)="deletePlan(element)"><span class="glyphicon glyphicon-remove"></span></button>
+      </mat-cell>
+    </ng-container>
+
+    rehabPlan name Column
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Plan Name </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns; let i = index;"></mat-row>
+  </mat-table>
+  <mat-paginator #paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]">
+  </mat-paginator>
+</div>

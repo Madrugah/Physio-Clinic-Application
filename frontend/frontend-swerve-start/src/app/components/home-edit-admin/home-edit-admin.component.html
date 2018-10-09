@@ -1,0 +1,38 @@
+<mat-card>
+  <mat-card-title>
+    Home Page Editor
+  </mat-card-title>
+  <div class="form-container">
+    <mat-form-field>
+      <textarea id="MT" value={{TLT}} matInput placeholder="Main Title"></textarea>
+    </mat-form-field>
+    
+    <mat-form-field>
+      <textarea id="MST" value={{TLS}} matInput placeholder="Main Subtitle"></textarea>
+    </mat-form-field>
+
+    <mat-form-field>
+      <textarea id="MB" value={{TLB}} matInput placeholder="Main Body"></textarea>
+    </mat-form-field>
+
+    <mat-form-field>
+      <textarea id="TRT" value={{TRT}} matInput placeholder="Top Right Title"></textarea>
+    </mat-form-field>
+
+    <mat-form-field>
+      <textarea id="TRB" value={{TRB}} matInput placeholder="Top Right Body"></textarea>
+    </mat-form-field>
+
+    <mat-form-field>
+      <textarea id="BRT" value={{BRT}} matInput placeholder="Bottom Right Title"></textarea>
+    </mat-form-field>
+
+    <mat-form-field>
+      <textarea id="BRB" value={{BRB}} matInput placeholder="Bottom Right Body"></textarea>
+    </mat-form-field>
+
+    <button mat-raised-button (click)="onSubmit()">
+    Update Home Page Content
+  </button >
+</div>
+  </mat-card>

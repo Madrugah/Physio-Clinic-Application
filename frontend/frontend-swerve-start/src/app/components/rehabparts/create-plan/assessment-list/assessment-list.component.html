@@ -1,0 +1,43 @@
+<div class="col-xs-12 text-center" style="margin-top:20px">
+  <form id="search" (ngSubmit)="onSearchForms(f)" #f="ngForm">
+    <mat-form-field style="margin-right:5px">
+      <mat-label>Search Term</mat-label>
+      <input matInput placeholder="Search" name="SearchExercises" ngModel >
+    </mat-form-field>
+    <button mat-raised-button type="submit"> Search </button>
+  </form>
+</div>
+    
+  <!--MAT TABLE-->
+<div class="example-container mat-elevation-z8 col-sm-offset-1 col-sm-10" style="margin-bottom:20px">
+  <mat-table #table [dataSource]="dataSource" matSort>
+
+     Button Column 
+    <ng-container matColumnDef="button" >
+      <mat-header-cell  *matHeaderCellDef mat-sort-header> Actions </mat-header-cell>
+      <mat-cell *matCellDef="let element" > 
+        <div *ngIf="edit==true;else plusBlock">
+          <button mat-icon-button (click)="emitDelete(element, false)"><span class="glyphicon glyphicon-pencil"></span></button>                    
+          <button mat-icon-button (click)="emitDelete(element, true)"><span class="glyphicon glyphicon-remove"></span></button>                    
+        </div>
+        <ng-template #plusBlock>
+          <button mat-icon-button (click)="emit(element)"><span class="glyphicon glyphicon-plus"></span></button>                    
+        </ng-template>
+        <!--<button mat-icon-button (click)="onDelete(i)"><span class="glyphicon glyphicon-remove"></span></button>                    -->
+      </mat-cell>
+    </ng-container>
+    
+      assessement test Column 
+    <ng-container matColumnDef = "name" >
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Test Name </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.name}}<!--value--> </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef = "displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns; let i = index;"></mat-row>
+  </mat-table>
+  <mat-paginator #paginator
+                 [pageSize]="5"
+                 [pageSizeOptions]="[5, 10, 20]">
+  </mat-paginator>
+</div>

@@ -1,0 +1,80 @@
+<div class="container-fluid">
+  <div class="row">
+    <h1 class="col-xs-12">Menu Creation:</h1>
+    <mat-card class="col-xs-offset-1 col-xs-10" style="margin-top:20px;margin-bottom:20px">
+      <div class="col-sm-12" [formGroup]="userForm">
+        <br/>
+        <div class="col-sm-6 col-lg-3">
+          <mat-form-field style="width:100%" >
+            <input matInput placeholder="Name" formControlName="name">
+          </mat-form-field>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+          <mat-form-field style="width:100%" >
+            <input matInput placeholder="Description" formControlName="description">
+          </mat-form-field>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+          <mat-form-field style="width:100%" >
+            <input matInput placeholder="Goal" formControlName="goal">
+          </mat-form-field>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+          <mat-form-field style="width:100%" >
+            <input matInput placeholder="Time Frame To Complete" formControlName="timeFrameToComplete">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <h3 class="text-center">Selected Assessment Tests</h3>
+        <mat-accordion>  <!--testChosen of selectedTests-->
+          <mat-expansion-panel  *ngFor="let testChosen of selectedTests; let i = index">
+            <mat-expansion-panel-header>
+              {{testChosen.name}}
+            </mat-expansion-panel-header>
+            <p>
+              <i>{{testChosen.description}}</i> 
+            </p>
+            <mat-action-row>
+              <button mat-raised-button type="button" (click)="removeTest(i)">Remove</button>
+            </mat-action-row>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+      <div class="col-sm-6">
+        <h3 class="text-center">Selected Exercises</h3>
+        <mat-accordion>  <!--exerciseChosen of selectedExercises-->
+          <mat-expansion-panel  *ngFor="let exerciseChosen of selectedExercises; let i = index">
+            <mat-expansion-panel-header>
+              {{exerciseChosen.name}}
+            </mat-expansion-panel-header>
+            <p>
+              <i>Action Steps</i> 
+            </p>
+            <mat-list>
+              <div class="col-xs-12" *ngFor="let step of exerciseChosen.actionSteps">
+                <mat-list-item style="height: auto; margin-top:10px; margin-bottom:10px">{{step}}</mat-list-item>
+                <mat-divider></mat-divider>
+              </div>
+            </mat-list>
+            <mat-action-row>
+              <button mat-raised-button type="button" (click)="removeExercise(i)">Remove</button>
+            </mat-action-row>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+      <div class="col-sm-12" style="margin:20px">
+        <mat-card-actions>	
+          <button  mat-raised-button type="submit" (click)="onNewRehabPlan()">Save</button>
+          <button  mat-raised-button type="button" (click)="redirectSelect()" class="cancelbtn">Cancel</button>
+        </mat-card-actions>	
+      </div>
+    </mat-card>
+    <div class="col-lg-6">
+      <app-assessment-list (uploaded)="selectThisAssessment($event)"></app-assessment-list>
+    </div>
+    <div class="col-lg-6">
+      <app-exercises-list (uploaded)="selectThisExercise($event)"></app-exercises-list>
+    </div>
+  </div>
+</div>

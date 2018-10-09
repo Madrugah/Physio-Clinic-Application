@@ -1,0 +1,98 @@
+<mat-card>
+    
+    <mat-card-title>
+    </mat-card-title>
+    <mat-card-content>
+        <ol>
+            <li>
+                <b>
+                    Assessment Package
+                </b>
+                <p>
+                    <p>
+                        Initial consult via email and video conference<br/>Personal online account Therapy Plan - accessed on your account<br/> Education, Advice<br/>
+                        <b>$150</b>
+                    </p>
+                    <mat-radio-button class="pay-button" (click)="setAmount(150);">
+                    Select this Package
+                </mat-radio-button>
+                
+                    <br/>
+                    <br/>
+            </li>
+        </ol>
+    </mat-card-content>
+</mat-card>
+
+<mat-card class="contrast">
+    <mat-card-title>
+        Additional Therapy Packages
+    </mat-card-title>
+
+    <mat-card-content>
+        It is anticipated that you will require more than one therapy session. After your first session, you will have a better understanding of the treatment package that best suits you.
+    </mat-card-content>
+</mat-card>
+<mat-card>
+    <mat-card-content>
+        <ol>
+
+
+            <li>
+                <b>
+                    Assessment + 3 Sessions
+                </b>
+                <p>
+                    <p>
+                        Initial consult via email and video conference<br/>3 further online sessions via email &/ video conference<br/>Personal online account Therapy Plan - accessed on your account<br/> Education, Advice<br/>
+                        <b>$350</b>
+                    </p>
+                    <mat-radio-button class="pay-button" (click)="setAmount(350);">
+                    Select this Package
+                </mat-radio-button>
+                    <br/>
+                    <br/>
+            </li>
+
+            <li>
+                <b>
+                    Assessment + 6 Sessions
+                </b>
+                <p>
+                    <p>
+                        Initial consult via email and video conference<br/>6 further online sessions via email &/ video conference<br/>Personal online account Therapy Plan - accessed on your account<br/> Education, Advice<br/>
+                        <b>$550</b>
+                    </p>
+                    <mat-radio-button class="pay-button" (click)="setAmount(550);">
+                    Select this Package
+                </mat-radio-button>
+                    <br/>
+                    <br/>
+            </li>
+
+
+            <li>
+                <b>
+                   Individual Followup Consultations 
+                </b> within 3 months of initial consultation
+                <p>
+                    <p>
+                        <b>$75</b>
+                    </p>
+                    <mat-radio-button class="pay-button" (click)="setAmount(75);">
+                    Select this Package
+                </mat-radio-button>
+                    <br/>
+                    <br/>
+            </li>
+             <div *ngIf="loggedIn;then content else other_content"></div>
+             <ng-template #content>
+            <p>You have selected the ${{Amount}} package</p>
+                <app-payment [paymentAmount]=Amount></app-payment>
+             </ng-template>
+             <ng-template #other_content>
+             <p> You have to be logged in to purchase a package. </p>    
+             </ng-template>
+        </ol>
+    </mat-card-content>
+</mat-card>

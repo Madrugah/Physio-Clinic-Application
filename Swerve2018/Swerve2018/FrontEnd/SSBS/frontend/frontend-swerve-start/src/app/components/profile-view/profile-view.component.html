@@ -1,0 +1,281 @@
+<div *ngIf="allowed">
+  <div *ngIf="isReset;then content else other_content"></div>
+  <ng-template #content>
+    <mat-card>
+      <mat-card-content>
+        <h2 class="example-h2">{{name}}</h2>
+        <mat-tab-group class="center">
+          <mat-tab label="My Account">
+            <div class="demo-tab-content">
+              <app-create-profile></app-create-profile>
+            </div>
+          </mat-tab>
+          <mat-tab label="Appointments">
+            <div class="demo-tab-content">
+              Change password to View
+            </div>
+          </mat-tab>
+          <mat-tab label="Progress Report">
+            <div class="demo-tab-content">
+              Change Password to View
+            </div>
+          </mat-tab>
+          <mat-tab label="Accounting">
+            <div class="demo-tab-content">
+              Change Password to View
+            </div>
+          </mat-tab>
+          <mat-tab label="Messages">
+            <div>
+              Change Password to View
+            </div>
+          </mat-tab>
+          <mat-tab label="Menus">
+            <div class="demo-tab-content">
+              Change Password to View
+            </div>
+          </mat-tab>
+          <mat-tab label="My Test Results">
+            <div class="demo-tab-content">
+              Change Password to View
+            </div>
+          </mat-tab>
+          <mat-tab label="Photos">
+            <div>
+              Change Password to View
+            </div>
+          </mat-tab>
+          <mat-tab label="Print Menu">
+            <div class="demo-tab-content">
+              Change Password to View
+            </div>
+          </mat-tab>
+        </mat-tab-group>
+      </mat-card-content>
+    </mat-card>
+  </ng-template>
+  <ng-template #other_content>
+    <div *ngIf="isPaid;then content2 else other_content2"></div>
+    <ng-template #content2>
+      <h2 class="example-h2">{{name}}</h2>
+      <mat-tab-group (selectedTabChange)="onLinkClick($event)" class="center">
+        <mat-tab label="My Account">
+          <div class="demo-tab-content text-center">
+            <app-create-profile></app-create-profile>
+          </div>
+        </mat-tab>
+        <mat-tab label="Appointments">
+          <div class="demo-tab-content" style=" margin:20px;">
+            <div class="container-fluid">
+              <div class="row" style="padding-top:20px; margin-bottom:20px">
+                <app-client-scheduler></app-client-scheduler>
+              </div>
+              <div class="row" style="padding-top:20px; margin-bottom:20px">
+                <app-client-appointments></app-client-appointments>
+              </div>
+            </div>
+          </div>
+        </mat-tab>
+        <mat-tab label="Progress Report">
+          <mat-card style="padding-top:20px;padding-bottom:20px;">
+            <div class="text-center col-xs-12">
+              <mat-card-title style="color: #016cae">Progress Report</mat-card-title>
+            </div>
+            <canvas id="myChart" width="700" height="400"></canvas>
+          </mat-card>
+        </mat-tab>
+        <mat-tab label="Accounting">
+          <div class="demo-tab-content">
+            <mat-card>
+              <div class="text-center" style="margin: 10px;">
+                <mat-card-title style="color: #016cae">Accounting Info</mat-card-title>
+              </div>
+              <div *ngFor="let rec of receipts">
+                <mat-card>
+                  <h3>Purchase of ${{rec.amount}} Plan, <br> </h3>
+                  <h4>On Date: {{rec.create_time}} <br></h4>
+                </mat-card>
+              </div>
+            </mat-card>
+          </div>
+        </mat-tab>
+        <mat-tab label="Messages">
+          <div *ngIf="displayMessages" class="col-xs-12">
+
+            <app-messages [messages]="messages"></app-messages>
+          </div>
+        </mat-tab>
+        <mat-tab label="Menus">
+          <div *ngIf="displayMenu">
+            <app-menus [isAllowed]="isAllowed" [myPlans]="myPlans" [availablePlans]="availablePlans"></app-menus>
+          </div>
+
+        </mat-tab>
+        <mat-tab label="My Test Results">
+          <div *ngIf="displayTest">
+            <app-tests [finishedResults]="finishedResults"></app-tests>
+          </div>
+        </mat-tab>
+        <div *ngIf="isAllowed">
+          <mat-tab label="Notes">
+            <app-notes [notes]="notes" [isAdmin]="isAdmin" [email]="email" [isPhys]="isPhys" [token]="token"></app-notes>
+          </mat-tab>
+        </div>
+        <mat-tab label="Photos">
+          <mat-grid-list cols="2" rowHeight="250px">
+            <div *ngFor="let file of files; let i = index">
+              <mat-grid-tile>
+                <mat-card style="max-height:250px; margin:20px">
+                  <img mat-card-image src={{file}} alt="i" style="max-height:175px; width: auto">
+                  <mat-card-actions class="text-center">
+                    <button mat-raised-button (click)="onRemoved(i)" style="max-height:75px">Delete</button>
+                  </mat-card-actions>
+                </mat-card>
+              </mat-grid-tile>
+            </div>
+          </mat-grid-list>
+          <div class="col-sm-12">
+            <image-upload (uploadFinished)="onUploadFinished($event)" [style]="customStyle" [uploadedFiles]="files"></image-upload>
+          </div>
+        </mat-tab>
+        <mat-tab label="Print Menu">
+          <div class="demo-tab-content">
+            <mat-toolbar>
+              <mat-toolbar-row>
+                <div class="float-right">
+                  <button mat-raised-button onclick="window.print()">Print</button>
+                </div>
+              </mat-toolbar-row>
+            </mat-toolbar>
+            <mat-card>
+              <mat-form-field>
+                <mat-select [(ngModel)]="selectedValue" placeholder="Tabs">
+                  <mat-option *ngFor="let t of tabList" [value]="t">
+                    {{ t }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <button mat-raised-button (click)="addToList()">Add to Print Menu</button>
+              <button mat-raised-button (click)="resetList()">Reset</button>
+            </mat-card>
+
+            <mat-card>
+              <div *ngIf="showAccount">
+                <mat-card>
+                  <app-create-profile [showAccount]="showAccount"></app-create-profile>
+                </mat-card>
+              </div>
+              <div *ngIf="showAppointments">
+                <mat-card>
+
+                  <app-client-appointments [showAppointments]="showAppointments"></app-client-appointments>
+                </mat-card>
+              </div>
+              <div *ngIf="showAccounting">
+                <mat-card>
+                  <div class="demo-tab-content">
+                    <mat-card>
+                      <div class="text-center" style="margin: 10px;">
+                        <mat-card-title style="color: #016cae">Accounting Info</mat-card-title>
+                      </div>
+                      <div *ngFor="let rec of receipts">
+                        <mat-card>
+                          <h3>Purchase of ${{rec.amount}} Plan, <br> </h3>
+                          <h4>On Date: {{rec.create_time}} <br></h4>
+                        </mat-card>
+                      </div>
+                    </mat-card>
+                  </div>
+
+                </mat-card>
+              </div>
+              <div *ngIf="showMenus">
+                <mat-card>
+
+                  <app-menus [myPlans]="myPlans" [showMenus]="showMenus"></app-menus>
+                </mat-card>
+              </div>
+              <div *ngIf="showResults">
+                <mat-card>
+
+                  <app-tests [finishedResults]="finishedResults" [showResults]="showResults"></app-tests>
+                </mat-card>
+              </div>
+            </mat-card>
+          </div>
+        </mat-tab>
+        <div *ngIf="isAllowed">
+          <mat-tab label="Menu Builder">
+            <app-create-plan></app-create-plan>
+          </mat-tab>
+        </div>
+        <div *ngIf="isAdmin">
+          <mat-tab label="Delete">
+            <mat-card style="max-height:250px; margin:20px">
+              <p>
+                Are you sure you would like to delete this account?
+              </p>
+              <button mat-raised-button (click)="deleteAcc()" style="max-height:75px">Yes</button>
+            </mat-card>
+          </mat-tab>
+        </div>
+      </mat-tab-group>
+    </ng-template>
+    <ng-template #other_content2>
+      <mat-card>
+        <mat-card-content>
+          <h2 class="example-h2">{{name}}</h2>
+          <mat-tab-group class="center">
+            <mat-tab label="My Account">
+              <div class="demo-tab-content">
+                <app-create-profile></app-create-profile>
+              </div>
+            </mat-tab>
+            <mat-tab label="Appointments">
+              <div class="demo-tab-content">
+                Purchase a plan to unlock this content.
+              </div>
+            </mat-tab>
+            <mat-tab label="Progress Report">
+              <div class="demo-tab-content">
+                Purchase a plan to unlock this content.
+              </div>
+            </mat-tab>
+            <mat-tab label="Accounting">
+              <div class="demo-tab-content">
+                Purchase a plan to unlock this content.
+              </div>
+            </mat-tab>
+            <mat-tab label="Messages">
+              <div>
+                Purchase a plan to unlock this content.
+              </div>
+            </mat-tab>
+            <mat-tab label="Menus">
+              <div class="demo-tab-content">
+                Purchase a plan to unlock this content.
+              </div>
+            </mat-tab>
+            <mat-tab label="My Test Results">
+              <div class="demo-tab-content">
+                Purchase a plan to unlock this content.
+              </div>
+            </mat-tab>
+            <mat-tab label="Photos">
+              <div>
+                Purchase a plan to unlock this content.
+              </div>
+            </mat-tab>
+            <mat-tab label="Print Menu">
+              <div class="demo-tab-content">
+                Purchase a plan to unlock this content.
+              </div>
+            </mat-tab>
+          </mat-tab-group>
+        </mat-card-content>
+      </mat-card>
+    </ng-template>
+  </ng-template>
+</div>
+<div class="col-xs-12" style>
+</div>

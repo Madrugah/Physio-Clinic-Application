@@ -1,0 +1,86 @@
+
+<div style="max-height:500px">
+  <h3 matDialogTitle>Create Exercise</h3>
+  <form id="create-exercise" [formGroup]="userForm">
+    <div class="col-sm-4">
+      <mat-form-field style="width:100%" >
+        <input matInput placeholder="Name" formControlName="name">
+      </mat-form-field>
+    </div>
+    <div class="col-sm-4">
+      <mat-form-field style="width:100%"  >
+        <input matInput placeholder="Author Name" name="authorName" formControlName="authorName"  >
+      </mat-form-field>
+    </div>
+    <div class="col-sm-4">
+      <mat-form-field style="width:100%" >
+        <input matInput placeholder="Location" formControlName="location"  >
+      </mat-form-field>
+    </div>
+    
+    
+    
+    <div class="col-sm-6">
+      <mat-form-field style="width:100%;" >
+        <textarea matInput placeholder="Description" formControlName="description" style="min-height:100px" ></textarea>
+      </mat-form-field>
+    </div>
+    <div class="col-sm-6">
+      <mat-form-field style="width:100%" >
+        <textarea matInput placeholder="Objectives" formControlName="objectives" style="min-height:100px"></textarea>
+      </mat-form-field>
+    </div>
+    
+    
+    
+    <div class="col-sm-12"   class="scrollbar style-1" formArrayName="actionSteps">
+      <div *ngFor="let item of userForm.controls.actionSteps.controls; let i = index">
+        <div class="col-sm-6">
+          <mat-form-field style="width:100%" >
+            <textarea matInput placeholder="Action Step {{i+1}}" formControlName="{{i}}" style="min-height:50px"></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+    <div class="col-sm-4">
+      <mat-form-field style="width:100%" >
+        <input matInput type="number" placeholder="Frequency" formControlName="frequency"  >
+      </mat-form-field>
+    </div>
+    <div class="col-sm-4">
+      <mat-form-field style="width:100%" >
+        <input matInput type="number" placeholder="Duration" formControlName="duration"  >
+      </mat-form-field>
+    </div>
+    <div class="col-sm-4">
+      <mat-form-field style="width:100%" >
+        <input matInput type="number" placeholder="Target Date" formControlName="targetDate"  >
+      </mat-form-field>
+    </div>
+    <div class="col-sm-12">
+      <image-upload 
+        (uploadFinished)="onUploadFinished($event)"
+        (removed)="onRemoved($event)"
+        [style]="customStyle"
+        [uploadedFiles]="files"></image-upload>
+    </div>
+    <div class="col-sm-12" style="margin-top:10px">
+      <div *ngIf = "userForm.controls.actionSteps.length==1; else notSingle">
+        <button mat-raised-button (click)="onSubmit()">Save Exercise</button>
+        <button mat-raised-button (click)="steps(true)">Add Step</button>
+        <button mat-raised-button class="disabled" >Remove Step</button>
+      </div>
+      <ng-template #notSingle>
+        <button mat-raised-button (click)="onSubmit()">Save Exercise</button>
+        <button mat-raised-button (click)="steps(true)">Add Step</button>
+        <button mat-raised-button (click)="steps(false)">Remove Step</button>
+      </ng-template>
+      <!--<button mat-raised-button class="btn btn-primary" (click)="onSubmit()">Save Exercise</button>-->
+      <!--<button mat-raised-button class="btn btn-primary" (click)="onX()">DO IT</button>-->
+    </div>
+  </form>
+</div>
+

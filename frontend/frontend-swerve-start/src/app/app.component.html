@@ -1,0 +1,63 @@
+<!--The content below is only a placeholder and can be replaced.-->
+
+
+<mat-toolbar >
+  <mat-toolbar-row class="pre-collapse">
+    <a routerLink="/" style="color:white">
+      <button mat-button class="off-white">
+          <img id="homeLogo" src="../assets/Images/logoTrans.png" alt="home" />
+      </button>
+    </a>
+
+    <a routerLink="" style="color:white"><button mat-button>Home</button></a>
+    <a routerLink="/about" style="color:white"><button mat-button>About</button></a>
+    <a routerLink="/how-it-works" style="color:white"><button mat-button>How It Works</button></a>
+    <a routerLink="/services" style="color:white"><button mat-button class="alert">Services</button></a>
+    <a routerLink="/freq" style="color:white"><button mat-button>FAQ's</button></a>
+    <a href="http://marcottephysio.com/blog/" style="color:white"><button mat-button>Blog</button></a>
+    <a href="http://marcottephysio.com/contact/" style="color:white"><button mat-button (click)="openDialog()" >Contact</button></a>
+
+    <span class="fill-space"></span>
+    <div *ngIf="isValid;then content else other_content"></div>
+    <ng-template #content><a routerLink="/login"><button mat-button class="off-white">Login</button></a></ng-template>
+    <ng-template #other_content>
+          <div *ngIf="adminStatus;then content2 else other_content2"></div>
+            <ng-template #content2>
+              <p id="email">
+                <a id="a-email" routerLink="/admin-dashboard">
+                    {{email}} 
+                </a>
+                </p> 
+                <button mat-button class="off-white" (click)="logout()">Logout</button>
+            </ng-template>
+            <ng-template #other_content2>
+                    <p id="email">
+                      <a id="a-email" routerLink="/view-profile/{{email}}">
+                          {{email}} 
+                      </a>
+                    </p> 
+                    <button mat-button class="off-white" (click)="logout()">Logout</button>
+            </ng-template>
+    </ng-template>
+    <!--<a routerLink="/login"><button mat-button class="off-white">Login</button></a>-->
+  </mat-toolbar-row>
+</mat-toolbar>
+
+
+<router-outlet></router-outlet>
+
+<div class="col-xs-12"></div>
+<div id="footer">
+
+  <br><br>
+
+
+  <span></span>
+  <p class="i">Copyright &copy; 2018</p>
+  <!--<p>-->
+    
+  <!--  <a routerLink=''>Privacy</a> |-->
+  <!--  <a routerLink=''>Copyright</a> |-->
+  <!--  <a routerLink=''>Terms</a>-->
+  <!--</p>-->
+</div>

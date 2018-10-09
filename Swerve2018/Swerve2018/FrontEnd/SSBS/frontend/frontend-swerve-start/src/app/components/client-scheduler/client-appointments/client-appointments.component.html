@@ -1,0 +1,65 @@
+<!--MAT TABLE-->
+<div *ngIf = "!showAppointments" class="example-container mat-elevation-z8 col-sm-offset-1 col-sm-10" style="padding-bottom:20px">
+  
+  <div class="text-center" style="margin: 20px">
+    <mat-card-title style="color: #016cae">Confirmed Appointments</mat-card-title>
+  </div>
+  <mat-table #table [dataSource]="dataSource" matSort>
+    Name Column
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Confirmed Appointments </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.title}}
+      </mat-cell>
+    </ng-container>
+    
+    <ng-container matColumnDef="physician">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Physician </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.physLastName}}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="date">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Appointment Date </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.startDate}}
+      </mat-cell>
+    </ng-container>
+
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns; let i = index;"></mat-row>
+  </mat-table>
+<br/>
+
+</div>
+<div *ngIf = "showAppointments" style="padding-bottom:20px">
+  
+  <div class="text-center" style="margin: 20px">
+    <mat-card-title style="color: #016cae">Confirmed Appointments</mat-card-title>
+  </div>
+  <mat-table #table [dataSource]="dataSource" matSort>
+    Name Column
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Confirmed Appointments </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.title}}
+      </mat-cell>
+    </ng-container>
+    
+    <ng-container matColumnDef="physician">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Physician </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.physLastName}}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="date">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Appointment Date </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.startDate}}
+      </mat-cell>
+    </ng-container>
+
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns; let i = index;"></mat-row>
+  </mat-table>
+<br/>
+
+</div>

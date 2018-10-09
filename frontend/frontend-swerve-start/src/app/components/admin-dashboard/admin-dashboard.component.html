@@ -1,0 +1,66 @@
+<!--<div *ngIf = "adminStatus || physStatus">-->
+<!--<mat-sidenav-container class="example-container">-->
+<!--  <mat-sidenav mode="side" opened>-->
+<!--      <mat-nav-list>-->
+<!--          <mat-list-item style="height:auto">-->
+<!--              <a routerLink="/patient-profile" style="color:blue"><button mat-button>Client List</button></a><br>-->
+<!--          </mat-list-item>-->
+<!--          <mat-list-item height = "100px">-->
+<!--              <a routerLink="/exercise" style="color:blue"><button mat-button>Exercise Library</button></a><br>-->
+<!--          </mat-list-item>-->
+<!--          <mat-list-item height = "100px">-->
+<!--              <a routerLink="" style="color:blue"><button mat-button>Forms</button></a><br>-->
+<!--          </mat-list-item>-->
+<!--          <mat-list-item height = "100px">-->
+<!--              <a routerLink="" style="color:blue"><button mat-button>Admin</button></a>-->
+<!--          </mat-list-item>-->
+<!--      </mat-nav-list>-->
+<!--  </mat-sidenav>-->
+<!--</mat-sidenav-container>-->
+
+<!--</div>-->
+<!--<div class="col-xs-12">-->
+<!--  <div class="col-sm-offset-1"></div>-->
+<!--  <div class="col-sm-2">-->
+<!--    <mat-card class="text-center" style="color:black">-->
+<!--      <img mat-card-image src="assets/Images/patientLogo.png">-->
+<!--      <mat-card-title>-->
+<!--        Patients-->
+<!--      </mat-card-title>-->
+<!--    </mat-card>-->
+<!--  </div>-->
+<!--  <div class="col-sm-6">-->
+<!--    <div class="col-sm-6">-->
+
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-2 navSide">
+      <div style="margin-top:65px"></div>
+    </div>
+    <div class="col-xs-2" style="position:sticky; top:0">
+      <div style="color:white">
+        <a routerLink="/home-edit" style="color:white"><button mat-button style="width:100%; margin-top:30px">Home Page Editor</button></a>
+        <a routerLink="/patient-profile" style="color:white"><button mat-button style="width:100%;">Patients</button></a>
+        <a routerLink="/exercise" style="color:white"><button mat-button style="width:100%">Create Exercises</button></a>
+        <a routerLink="/assessment-select" style="color:white"><button mat-button style="width:100%">Assessment Forms</button></a>
+        <a routerLink="/question-selector" style="color:white"><button mat-button style="width:100%">Questions</button></a>
+        <a routerLink="/rehab-plan-select" style="color:white"><button mat-button style="width:100%">Manage Menus</button></a>
+        <a routerLink="/create-admin" style="color:white"><button mat-button style="width:100%">Create Admin</button></a>
+        <a routerLink="/create-phys" style="color:white"><button mat-button style="width:100%">Create Physician</button></a>
+      </div>
+    </div>
+    <div class="col-xs-10 ">
+      <div class="col-xs-12">
+        <app-test-scheduler></app-test-scheduler>
+      </div>
+      <br/>
+      <!--  <div class="col-xs-12" style="margin-top:50px">-->
+      <!--    <div class="col-xs-offset-2 col-xs-8">-->
+      <!--      <app-home-edit-admin></app-home-edit-admin>-->
+      <!--  </div>-->
+      <!--</div>-->
+    </div>
+  </div>

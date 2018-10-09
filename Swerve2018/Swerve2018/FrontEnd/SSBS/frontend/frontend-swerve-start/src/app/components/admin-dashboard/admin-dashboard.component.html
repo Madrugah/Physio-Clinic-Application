@@ -1,0 +1,34 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-2 navSide">
+      <div style="margin-top:65px"></div>
+    </div>
+    <div class="col-xs-2" style="position:sticky; top:0">
+      <div style="color:white">
+        <a routerLink="/patient-profile" style="color:white"><button mat-button style="width:100%; margin-top:30px">Patients</button></a>
+        <a routerLink="/exercise" style="color:white"><button mat-button style="width:100%">Create Exercises</button></a>
+        <a routerLink="/assessment-select" style="color:white"><button mat-button style="width:100%">Assessment Forms</button></a>
+        <a routerLink="/question-selector" style="color:white"><button mat-button style="width:100%">Questions</button></a>
+        <a routerLink="/messages" style="color:white"><button mat-button style="width:100%">View Messages</button></a>
+        <a routerLink="/rehab-plan-select" style="color:white"><button mat-button style="width:100%">Manage Menus</button></a>
+        <a routerLink="/admin-create-account" style="color:white"><button mat-button style="width:100%">Create User</button></a>
+        <div *ngIf = "adminStatus">
+          <a routerLink="/physician-list" style="color:white"><button mat-button style="width:100%">Physician List</button></a>
+          <a routerLink="/home-edit" style="color:white"><button mat-button style="width:100%">Home Page Editor</button></a>
+          <a routerLink="/create-admin" style="color:white"><button mat-button style="width:100%">Create Admin</button></a>
+          <a routerLink="/create-phys" style="color:white"><button mat-button style="width:100%">Create Physician</button></a>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-10 ">
+      <div class="col-xs-12">
+        <app-test-scheduler></app-test-scheduler>
+      </div>
+      <br/>
+      <!--  <div class="col-xs-12" style="margin-top:50px">-->
+      <!--    <div class="col-xs-offset-2 col-xs-8">-->
+      <!--      <app-home-edit-admin></app-home-edit-admin>-->
+      <!--  </div>-->
+      <!--</div>-->
+    </div>
+  </div>

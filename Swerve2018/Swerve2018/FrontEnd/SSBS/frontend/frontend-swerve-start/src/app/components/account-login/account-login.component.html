@@ -1,0 +1,21 @@
+<div class="row" style="padding-top:20px">
+    <mat-card class="col-sm-offset-2 col-sm-8">
+            <div class="text-center col-xs-12">
+                <h1>Login</h1>
+            </div>
+            <form (ngSubmit)="onButtonPress(f)" #f="ngForm" class="text-center" novalidate>
+                <mat-form-field style="margin-right:5px">
+                    <mat-label for="email">Email</mat-label>
+                    <input matInput type="text" id="email" placeholder="Enter Email" [(ngModel)]="email" name="email" required>
+                </mat-form-field>
+                <mat-form-field style="margin-right:5px">
+                    <mat-label for="password">Password</mat-label>
+                    <input matInput type="password" id="password" placeholder="enter password" [(ngModel)]="password" name="password" required>
+                </mat-form-field>
+<button mat-raised-button type="submit">Submit</button>
+            </form>
+            <br>
+                  <p>Don't have an account? Create one <a routerLink="/create-account">here.</a></p>
+    </mat-card>
+</div>
+

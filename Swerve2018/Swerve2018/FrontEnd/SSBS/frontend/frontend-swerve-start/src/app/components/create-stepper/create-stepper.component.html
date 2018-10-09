@@ -1,0 +1,125 @@
+<div class="row" style="padding-top:20px">
+  <mat-card class="col-sm-offset-2 col-sm-8">
+    <div class="text-center col-xs-12">
+      <h1>Create A New Physician</h1>
+      <mat-divider></mat-divider>
+    </div>
+    <div class="col-sm-12">
+      <mat-horizontal-stepper [linear]=true linear [formGroup]="userForm">
+        <mat-step>
+          <ng-template matStepLabel>Fill Out Your Credentials</ng-template>
+          <div class="text-center">
+            <mat-form-field style="margin-right:5px">
+              <mat-label>Email</mat-label>
+              <input matInput placeholder="Enter Email" formControlName="email">
+            </mat-form-field>
+            <mat-form-field style="margin-right:5px">
+              <mat-label>Password</mat-label>
+              <input matInput type="password" placeholder="Enter Password" formControlName="password">
+            </mat-form-field>
+          </div>
+          <mat-card-actions style="margin:5px">
+            <div class="col-sm-6 text-left">
+              <button mat-raised-button matStepperPrevious style="margin:5px" disabled>Back</button>
+            </div>
+            <div class="col-sm-6 text-right">
+              <button mat-raised-button matStepperNext style="margin:5px">Next</button>
+            </div>
+          </mat-card-actions>
+        </mat-step>
+
+        <mat-step>
+          <ng-template matStepLabel>Terms & Conditions</ng-template>
+          <div class="col-sm-12">
+            By continuing to create an account and use this service, I give<br/>
+            <br/>1. CONSENT TO PARTICIPATE: I voluntarily authorize and give consent to Kingsville Physiotherapy Clinic to provide its services to me. This includes, but is not limited to, evaluation, exercises prescription and other corrective procedures.
+            I acknowledge that no guarantees have been, or can be made to me, as to the result of the services provided at Kingsville Physiotherapy Clinic.<br/>
+            <br/>2. ACKNOWLEDGEMENT OF INFORMED CONSENT: I understand that I will be informed of the potential risks and benefits of all services provided by Kingsville Physiotherapy Clinic. I understand that I have the right to consent or refuse consent
+            to any procedure or service offered by Kingsville Physiotherapy Clinic.<br/>
+            <br/>3. AUTHORIZATION TO RELEASE INFORMATION: I authorize the release of any information contained in my Kingsville Physiotherapy record for the following purposes:<br/> a. at my request, to assist in processing my insurance claims<br/>b.
+            to provide information to my health professional referral source (personal physician).<br/><br/>
+
+            <mat-checkbox formControlName="terms">I Agree</mat-checkbox>
+            <br/>
+  
+          </div>
+
+          <!--TODO add the formControl-->
+
+          <!--<mat-form-field style="margin-right:5px">-->
+          <!--  <mat-label>Do you agree with the terms?</mat-label>-->
+
+          <!--<mat-radio-button class="pay-button" (click)="setAmount(350);" formControlName="termsHolder">-->
+          <!--  Select this Package-->
+          <!--</mat-radio-button>-->
+          <!--</mat-form-field>-->
+
+          <mat-card-actions style="margin:5px">
+            <div class="col-sm-6 text-left">
+              <button mat-raised-button matStepperPrevious style="margin:5px">Back</button>
+            </div>
+            <div class="col-sm-6 text-right">
+
+              <button mat-raised-button matStepperNext style="margin:5px">Next</button>
+            </div>
+          </mat-card-actions>
+
+        </mat-step>
+
+        <mat-step>
+          <ng-template matStepLabel>Describe Yourself</ng-template>
+          <div class="col-sm-12 text-center">
+            <div class="col-sm-12">
+              <strong>Email: </strong>{{userForm.value.email}}
+            </div>
+            <mat-form-field style="margin-right:5px">
+              <mat-label for="givenName">Given name</mat-label>
+              <input matInput placeholder="Enter given name" formControlName="givenName">
+            </mat-form-field>
+            <mat-form-field style="margin-right:5px">
+              <mat-label for="familyName">Family name</mat-label>
+              <input matInput placeholder="Enter Family Name" formControlName="familyName">
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput [max]="maxDate" [matDatepicker]="picker" formControlName="DOB" (dateChange)="getAge()" placeholder="Date of Birth">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field style="margin-right:5px">
+              <mat-label for="age">Age: </mat-label>
+              <input matInput placeholder="Age" formControlName="age">
+            </mat-form-field>
+            <mat-form-field style="margin-right:5px">
+              <mat-label for="postalCode">Postal Code</mat-label>
+              <input matInput placeholder="Enter Postal Code" formControlName="postalCode">
+            </mat-form-field>
+            <mat-form-field style="margin-right:5px">
+              <mat-label for="phone">Phone Number</mat-label>
+              <input matInput placeholder="Enter Phone Number" formControlName="phone">
+            </mat-form-field>
+            <mat-form-field style="margin-right:5px">
+              <mat-label for="country">Country</mat-label>
+              <input matInput placeholder="Enter Country" formControlName="country">
+            </mat-form-field>
+            <mat-form-field style="margin-right:5px">
+              <mat-label for="province">Province</mat-label>
+              <input matInput placeholder="Enter Province" formControlName="province">
+            </mat-form-field>
+            <mat-form-field style="margin-right:5px">
+              <mat-label for="city">City</mat-label>
+              <input matInput placeholder="Enter City" formControlName="city">
+            </mat-form-field>
+          </div>
+          <mat-card-actions>
+            <div class="col-sm-6 text-left">
+              <button mat-raised-button matStepperPrevious style="margin:5px">Back</button>
+            </div>
+            <div class="col-sm-6 text-right">
+              <button mat-raised-button (click)="onSubmit()" style="margin:5px">Create New Account</button>
+            </div>
+          </mat-card-actions>
+        </mat-step>
+      </mat-horizontal-stepper>
+    </div>
+  </mat-card>
+</div>

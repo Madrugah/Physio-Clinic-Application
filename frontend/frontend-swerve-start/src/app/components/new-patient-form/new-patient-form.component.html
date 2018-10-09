@@ -1,0 +1,80 @@
+<mat-card>
+  <mat-card-content>
+    <h2 class="example-h2">{{name}}</h2>
+    <mat-tab-group class="center">
+      <mat-tab label="Documents">
+        <div class="demo-tab-content">
+          Documents go here
+        </div>
+      </mat-tab>
+      <mat-tab label="Accounting">
+        <div class="demo-tab-content">
+          Accounting foes here
+        </div>
+      </mat-tab>
+      <mat-tab label="Messgaes">
+        Messages Go Here
+      </mat-tab>
+      <mat-tab label="Assesments">
+        <div class="demo-tab-content">
+          Assesments go here
+        </div>
+      </mat-tab>
+      <mat-tab label="Notes">
+        {{notes}} go here
+      </mat-tab>
+      <mat-tab label="Photos">
+        <mat-grid-list cols="2" rowHeight="2:4">
+          <mat-grid-tile>
+            <img mat-card-image src={{picture1}} alt="Photo1">
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <img mat-card-image src={{picture2}} alt="Photo2">
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <img mat-card-image src={{picture3}} alt="Photo3">
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <img mat-card-image src={{picture4}} alt="Photo4">
+          </mat-grid-tile>
+        </mat-grid-list>
+      </mat-tab>
+      <mat-tab label="Menu Builder">
+        <div class="demo-tab-content">
+          Menu Builder goes here
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-card-content>
+</mat-card>
+
+<mat-card>
+  <mat-card-actions>
+    <button mat-button>More</button>
+    <button mat-button>Edit</button>
+    <button mat-button>Delete</button>
+  </mat-card-actions>
+</mat-card>
+
+
+
+<!-- HTML for the loading of a crosshair image canvas set -->
+<!--<div hidden="true">  -->
+<!--  <canvas width="800" height="600" id="layer1New">-->
+<!--  </canvas>-->
+<!--  <canvas width="800" height="600" id="layer2New">-->
+<!--  </canvas>-->
+<!--</div>-->
+<!-- HTML for the creation of the crosshair canvas -->
+<!--<div id="editor" on-mousemove="showCoords($event)" (click)="saveCanvas($event)">-->
+<!--  <canvas width="800" height="600" id="myCanvas">-->
+
+<!--  </canvas>-->
+<!--  <canvas id="layer2" width="800" height="600">-->
+<!--  </canvas>-->
+<!--  <canvas id="layer3" width="800" height="600">-->
+<!--  </canvas>-->
+<!--</div>-->
+
+<!-- src of person is the target image -->
+<!-- <img id="person" hidden="true" src="https://vignette.wikia.nocookie.net/legendsofthemultiuniverse/images/c/c2/Davinci_human-sketch32.jpg">-->

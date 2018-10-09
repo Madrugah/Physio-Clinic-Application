@@ -1,0 +1,28 @@
+img{
+    height: 380px;
+    width: auto;
+    display: block;
+    margin-left: 20px;
+    margin-right: auto;
+    
+}
+.rightAlign{
+    text-align: right;
+}
+.contrast{
+    color: #fdfaf3;
+    background-color: #016cae; 
+}
+
+/* Colour palette
+---------------------
+ off white:   #fdfaf3
+ black:       #211009
+ cobalt:      #324c7f
+ bright blue: #016cae
+ turquoise:   #006d8c
+ yellow:      #fecf06
+ navy blue:   #22244d
+ orange:      #fbad33
+---------------------
+*/

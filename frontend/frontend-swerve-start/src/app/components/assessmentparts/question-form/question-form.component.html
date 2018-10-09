@@ -1,0 +1,88 @@
+<h1>Question Editor:</h1>
+<mat-card class="col-sm-offset-1 col-sm-10" [formGroup]="userForm" style="margin-top:20px">
+  <div class="col-xs-12">
+    <i>
+      Select a question type in order to submit the form<br> 
+    </i>
+  </div>
+  <div class="col-sm-4">
+    <mat-form-field style="width:100%" >
+      <input matInput placeholder="Name" formControlName="name"  >
+    </mat-form-field>
+  </div>
+  <div class="col-sm-4">
+    <mat-form-field style="width:100%" >
+      <mat-select placeholder="Question Type" formControlName="type">
+        <mat-option [value]="0">
+          Create New Type
+        </mat-option>
+        <mat-option *ngFor="let type of possibletypes" [value]="type._id">
+          {{ type.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div *ngIf="userForm.value.type==0">  
+    <div class="col-sm-4">
+      <mat-form-field style="width:100%" >
+        <input matInput placeholder="New Question Type Name" formControlName="newTypeName"  >
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <mat-form-field style="width:100%;" >
+      <textarea matInput placeholder="Question Text" formControlName="questionText" style="min-height:50px" ></textarea>
+    </mat-form-field>
+  </div>
+  <div class="col-sm-6">
+    <mat-form-field style="width:100%;" >
+      <textarea matInput placeholder="Help Description" formControlName="helpDescription" style="min-height:100px" ></textarea>
+    </mat-form-field>
+  </div>
+  <mat-card-actions class="col-sm-12" style="margin-left:40px;margin-bottom:20px">	
+    <div *ngIf="qId!=undefined; else editBlock">
+      <div *ngIf="userForm.value.type==0; else typeBlock">  
+        <button mat-raised-button disabled>Save</button>
+        <button mat-raised-button disabled>Save As</button>
+        <button mat-raised-button (click)="onNewQuestionType()">Create New Type</button>
+        <a routerLink="/question-selector" style="color:black"><button mat-raised-button>Cancel</button></a>
+      </div>
+      <ng-template #typeBlock>
+        <div *ngIf="userForm.value.type==undefined; else noTypeBlock">  
+          <button mat-raised-button disabled>Save</button>
+          <button mat-raised-button disabled>Save As</button>
+          <button mat-raised-button disabled>Create New Type</button>
+          <a routerLink="/question-selector" style="color:black"><button mat-raised-button>Cancel</button></a>
+        </div>
+        <ng-template #noTypeBlock>
+          <button mat-raised-button (click)="onEditQuestion()">Save</button>
+          <button mat-raised-button (click)="onNewQuestion()">Save As</button>
+          <button mat-raised-button disabled>Create New Type</button>
+          <a routerLink="/question-selector" style="color:black"><button mat-raised-button>Cancel</button></a>
+        </ng-template>
+      </ng-template>
+    </div>
+    <ng-template #editBlock>
+      <div *ngIf="userForm.value.type==0; else typeBlock">  
+        <button mat-raised-button disabled>Submit</button>
+        <button mat-raised-button (click)="onNewQuestionType()">Create New Type</button>
+        <a routerLink="/question-selector" style="color:black"><button mat-raised-button>Cancel</button></a>
+      </div>
+      <ng-template #typeBlock>
+        <div *ngIf="userForm.value.type==undefined; else noTypeBlock">  
+          <button mat-raised-button disabled>Submit</button>
+          <button mat-raised-button disabled>Create New Type</button>
+          <a routerLink="/question-selector" style="color:black"><button mat-raised-button>Cancel</button></a>
+        </div>
+        <ng-template #noTypeBlock>
+          <button mat-raised-button (click)="onNewQuestion()">Submit</button>
+          <button mat-raised-button disabled>Create New Type</button>
+          <a routerLink="/question-selector" style="color:black"><button mat-raised-button>Cancel</button></a>
+        </ng-template>
+      </ng-template>
+    </ng-template>
+  </mat-card-actions>	
+</mat-card>
+
+
+<!--<div *ngIf = "adminStatus || physStatus">-->

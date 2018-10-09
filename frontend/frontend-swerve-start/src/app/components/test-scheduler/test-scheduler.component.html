@@ -1,0 +1,60 @@
+<div class="text-center">
+    <h3>Your Calender</h3>
+</div>
+<dx-scheduler
+    id="scheduler"
+    [dataSource]="Appointments"
+    [views]="['day', 'week', 'month']"
+    currentView="week"
+    [firstDayOfWeek]="0"
+    [startDayHour]="9"
+    [endDayHour]="20"
+    [showAllDayPanel]="false"
+    [currentDate]="currentDate"
+    [crossScrollingEnabled]="true"
+    [cellDuration]="30"
+    [height]="600"
+    appointmentTemplate="appointment-template"
+    appointmentTooltipTemplate="tooltip-template"
+    (onAppointmentUpdating)="onPreUpdate($event)"
+    (onAppointmentFormCreated)="onForm($event)">
+    <!--(onAppointmentAdding)="GO()"-->
+    <!--(onAppointmentDblClick)="GO()"-->
+    <!--[maxAppointmentsPerCell]=1-->
+
+    <dxo-editing [allowAdding]="true"></dxo-editing>
+
+    <dxi-resource
+        fieldExpr="state"
+        label="State"
+        [dataSource]="States"
+        [useColorAsDefault]="selectedResource === 'state'">
+    </dxi-resource>
+
+    <div *dxTemplate="let appointment of 'appointment-template'">
+        <div class='showtime-preview'>
+            <div>{{appointment.title}}</div>
+            <div>{{appointment.description}}</div>
+        </div>
+    </div>
+
+    <div *dxTemplate="let appointment of 'tooltip-template'">
+        <div class='movie-tooltip'>
+            <div>{{appointment.title}}</div>
+        </div><br>
+        <button mat-raised-button (click)="deleteApp(appointment.id)">Delete</button>
+        <div *ngIf="appointment.state==2">
+            <button mat-raised-button (click)="changeState(appointment)">Accept Request</button>
+        </div>
+        
+    </div>
+</dx-scheduler>
+
+  <div class="col-lg-6" >
+      <h3 style="text-align: center">Confirmed Future Appointments</h3>
+    <app-confirmed-list (emitDelete)="deleteApp($event)" style="margin:5px" [appointmentInfo]="ConfirmedAppointments"></app-confirmed-list>
+  </div>
+  <div class="col-lg-6">
+      <h3 style="text-align: center">Pending Future Appointments</h3>
+    <app-pending-list (emitEdit)="changeState($event)" style="margin:5px" (emitDelete)="deleteApp($event)" [appointmentInfo]="PendingAppointments"></app-pending-list>
+  </div>

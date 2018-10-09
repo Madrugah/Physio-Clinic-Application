@@ -1,0 +1,60 @@
+<div class="demo-tab-content">
+              <div *ngFor="let plan of myPlans">
+                <mat-expansion-panel>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      {{plan.name}}
+                    </mat-panel-title>
+                    <mat-panel-description>
+                      {{plan.description}}
+                    </mat-panel-description>
+                  </mat-expansion-panel-header>
+                  <h2>Complete Exercises</h2>
+                  <div *ngFor="let exercise of plan.exercises">
+                    <div style="height: 15px;"></div>
+                    <mat-card>
+                      <h3>{{exercise.name}}</h3>
+                      <hr>
+                      <p>Description: {{exercise.description}}</p>
+                      <p>Objectives: {{exercise.objectives}}</p>
+                      <p>Location: {{exercise.location}}</p>
+                      <p>Frequency: {{exercise.frequency}}</p>
+                      <p>Duration: {{exercise.duration}}</p>
+                      <p>Target Date: {{exercise.targetDate}}</p>
+                      <div *ngFor="let image of exercise.multimediaURL">
+                        <img src={{image}}>
+                      </div>
+                      <ol>
+                        <li *ngFor="let step of exercise.actionSteps">
+                          {{step}}
+                        </li>
+                      </ol>
+                      <div *ngIf="isAllowed"><button (Click)="removePlan(plan._id)">Remove</button></div>
+                    </mat-card>
+                  </div>
+
+
+                  <h2>Tests</h2>
+                  <mat-card *ngFor="let test of plan.tests">
+                    <h2>{{test.name}}</h2>
+                    <mat-divider></mat-divider>
+                    <h4>{{test.description}}</h4>
+                    <button (click)="takeTest(test)">Complete Test</button>
+                  </mat-card>
+                </mat-expansion-panel>
+              </div>
+              <div *ngIf="isAllowed">
+                <mat-card>
+                  <h2>Select a Rehab Plan to Add</h2>
+                  <mat-divider></mat-divider>
+                  <br>
+                  <h4>Plan:</h4>
+                  <mat-select placeholder="Select Plan" style="width: 25%;" [(value)]="selectedPlan" required>
+                    <mat-option *ngFor="let plan of availablePlans" value="{{plan._id}}">
+                      {{plan.name}}
+                    </mat-option>
+                  </mat-select>
+                </mat-card>
+                <button mat-button (click)="assignPlan(selectedPlan)">Add to User's Stuff</button>
+              </div>
+            </div>

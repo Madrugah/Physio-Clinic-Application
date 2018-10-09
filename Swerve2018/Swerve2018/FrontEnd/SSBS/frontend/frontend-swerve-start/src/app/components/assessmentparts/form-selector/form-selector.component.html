@@ -1,0 +1,17 @@
+<div *ngIf="adminStatus || physStatus">
+
+  <div class="text-center" style="margin: 20px">
+    <mat-card-title style="color: #016cae">Select A Form to Edit</mat-card-title>
+  </div>
+  <div class="text-center">
+    <button mat-raised-button color="blue" (click)="newFormRedirect()">Create an Assessment Form</button>
+    <button mat-raised-button routerLink="/admin-dashboard">Back</button>
+
+  </div>
+  <div class="col-lg-12">
+    <div class="col-lg-8 col-lg-offset-2">
+      <app-assessment-list (uploaded)="checkForDelete($event)" [edit]="isForEdit"></app-assessment-list>
+    </div>
+  </div>
+
+</div>

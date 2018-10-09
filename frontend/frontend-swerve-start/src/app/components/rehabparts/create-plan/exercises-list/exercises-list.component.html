@@ -1,0 +1,43 @@
+<!--(uploaded)="someMethod($event)"-->
+<div *ngIf="!loaded">
+  <div class="text-center col-sm-2 col-sm-offset-5">
+    <h4>Loading Exercises</h4>
+    <mat-progress-bar mode="indeterminate" style="width:100%"></mat-progress-bar>
+  </div>
+</div>
+  <div class="col-xs-12 text-center">
+    <form id="search" (ngSubmit)="onSearch(f)" #f="ngForm">
+      <mat-form-field style="margin-right:5px">
+        <mat-label>Search Exercises</mat-label>
+        <input matInput placeholder="Search" name="SearchExercises" ngModel >
+      </mat-form-field>
+      <button mat-raised-button type="submit"> Search </button>
+    </form>
+  </div>
+  
+  <div class="example-container mat-elevation-z8 col-sm-offset-1 col-sm-10" style="margin-bottom:40px">
+    <mat-table #table [dataSource]="dataSource2" matSort>
+  
+       Button Column 
+      <ng-container matColumnDef="button"><!--THIS NAME MATTERS-->
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Actions </mat-header-cell>
+        <mat-cell *matCellDef="let element"> <!--this allows you to send index with buttons-->
+          <button mat-icon-button (click)="selectThisExercise(element)"><span class="glyphicon glyphicon-plus"></span></button>                    
+          <!--<button mat-icon-button (click)="onDelete(i)"><span class="glyphicon glyphicon-remove"></span></button>                    -->
+        </mat-cell>
+      </ng-container>
+      
+        Exercise name Column 
+      <ng-container matColumnDef = "name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Exercise Name </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.name}}<!--value--> </mat-cell>
+      </ng-container>
+  
+      <mat-header-row *matHeaderRowDef = "displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns; let i = index;"></mat-row>
+    </mat-table>
+    <mat-paginator #paginator
+                   [pageSize]="5"
+                   [pageSizeOptions]="[5, 10, 20]">
+    </mat-paginator>
+  </div>
